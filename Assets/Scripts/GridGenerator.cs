@@ -12,6 +12,11 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] [Range(1, 20)] int _zCount = 5;
 
     [SerializeField] List<GridContent> _gridContents = new List<GridContent>();
+    
+    public List<GridContent> GridContents 
+    {
+        get { return _gridContents; }
+    }
 
     void Start()
     {
@@ -34,6 +39,7 @@ public class GridGenerator : MonoBehaviour
             }
         }
 
+        EnemySpawner.instance.SpawnEnemies(_gridContents);
     }
 
     private Vector3 CalculateFirstCellPos()
@@ -64,6 +70,7 @@ public class GridContent
 {
     public GameObject _groundTile;
     public int _cellIndex;
+    public bool Occupied { get; set; }
 
     public GridContent(GameObject groundTile, int index)
     {

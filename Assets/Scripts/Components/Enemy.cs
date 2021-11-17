@@ -6,29 +6,50 @@ public class Enemy : MonoBehaviour, IHealth
 {
     [SerializeField] float _maxHealth = 2f;
     [SerializeField] float _damagePerHit = 1f;
+    [SerializeField] GameObject _enemyModel;
 
     float _currentHealth;
     public GridTileProcessor GridTile { get; set; }
+    bool _isRevealed;
 
     private void OnEnable()
     {
         if(GridTile != null)
+        {
             GridTile.OnClicked += DecreaseHealth;
+            GridTile.OnClicked += Reveal;
+        }
     }
 
     private void OnDisable()
     {
         if (GridTile != null)
+        {
             GridTile.OnClicked -= DecreaseHealth;
+            GridTile.OnClicked -= Reveal;
+        }
     }
 
     private void Start()
     {
+        _enemyModel.SetActive(false);
         _currentHealth = _maxHealth;
+    }
+
+    private void Reveal()
+    {
+        if (!_isRevealed)
+        {
+            _enemyModel.SetActive(true);
+            _isRevealed = true;
+        }
     }
 
     public void DecreaseHealth()
     {
+        if (!_isRevealed)
+            return;
+
         Debug.Log("Damaged Tank");
         _currentHealth -= _damagePerHit;
 
@@ -41,4 +62,9 @@ public class Enemy : MonoBehaviour, IHealth
         gameObject.SetActive(false);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, Vector3.one * 0.5f);
+    }
 }

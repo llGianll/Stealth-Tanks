@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceholderEnemy : MonoBehaviour, IHealth
+public class Enemy : MonoBehaviour, IHealth
 {
     [SerializeField] float _maxHealth = 2f;
     [SerializeField] float _damagePerHit = 1f;

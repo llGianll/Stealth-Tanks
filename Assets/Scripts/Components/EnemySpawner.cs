@@ -33,16 +33,18 @@ public class EnemySpawner : MonoBehaviour
             if (gridContents[rand].Occupied)
                 continue;
 
-            Spawn(gridContents[rand]._groundTile.transform.position);
+            Spawn(gridContents[rand]);
             gridContents[rand].Occupied = true;
             i++;
         }
     }
 
-    private void Spawn(Vector3 tilePosition)
+    private void Spawn(GridContent content)
     {
+        Vector3 tilePosition = content._groundTile.transform.position;
         Vector3 enemyPos = new Vector3(tilePosition.x, tilePosition.y + _spawnYOffset, tilePosition.z);
         GameObject enemy = Instantiate(_enemy, enemyPos, Quaternion.identity);
+        content.EnemyUnit = enemy;
         enemy.transform.parent = this.transform;
     }
 }

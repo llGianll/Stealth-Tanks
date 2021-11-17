@@ -11,7 +11,7 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] [Range(1, 20)] int _xCount = 5;
     [SerializeField] [Range(1, 20)] int _zCount = 5;
 
-    [SerializeField] List<GridContent> _gridContents = new List<GridContent>();
+    List<GridContent> _gridContents = new List<GridContent>();
     
     public List<GridContent> GridContents 
     {
@@ -62,19 +62,5 @@ public class GridGenerator : MonoBehaviour
         //                                    _groundPrefab.localScale.y , 
         //                                    _zCount * _groundPrefab.localScale.z);
         //Gizmos.DrawWireCube(transform.position, gridDimension);
-    }
-}
-
-[System.Serializable]
-public class GridContent
-{
-    public GameObject _groundTile;
-    public int _cellIndex;
-    public bool Occupied { get; set; }
-
-    public GridContent(GameObject groundTile, int index)
-    {
-        _groundTile = groundTile;
-        _cellIndex = index;
     }
 }

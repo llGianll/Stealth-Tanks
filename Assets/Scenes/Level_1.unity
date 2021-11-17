@@ -201,7 +201,6 @@ MonoBehaviour:
   _groundPrefab: {fileID: 2276919246180167106, guid: 63070eae86206dd4d88a77681745a090, type: 3}
   _xCount: 10
   _zCount: 10
-  _gridContents: []
 --- !u!4 &260000643
 Transform:
   m_ObjectHideFlags: 0

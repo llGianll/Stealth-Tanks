@@ -7,9 +7,11 @@ public class GridGenerator : MonoBehaviour
 {
     [SerializeField] GameObject _gridTile;
 
-    [Header("Grid Size")]
-    [SerializeField] [Range(1, 20)] int _xCount = 5;
-    [SerializeField] [Range(1, 20)] int _zCount = 5;
+    //[Header("Grid Size")]
+    //[SerializeField] [Range(1, 20)] int XCount = 5;
+    //[SerializeField] [Range(1, 20)] int ZCount = 5;
+    [SerializeField] GridSizeSO _gridSize;
+
 
     List<GridTileProcessor> _gridTileProcessors = new List<GridTileProcessor>();
 
@@ -23,9 +25,11 @@ public class GridGenerator : MonoBehaviour
         Vector3 groundScale = _gridTile.transform.localScale;
         Vector3 firstCellPos = transform.position;
 
-        for (int i = 0; i < _xCount; i++)
+        Debug.Log(_gridSize.XCount);
+
+        for (int i = 0; i < _gridSize.XCount; i++)
         {
-            for (int j = 0; j < _zCount; j++)
+            for (int j = 0; j < _gridSize.ZCount; j++)
             {
                 Vector3 cellPosition = new Vector3(firstCellPos.x + i, firstCellPos.y, firstCellPos.z + j);
                 GameObject gridTile = Instantiate(_gridTile, cellPosition, Quaternion.identity);
@@ -41,7 +45,7 @@ public class GridGenerator : MonoBehaviour
     private Vector3 CalculateFirstCellPos()
     {
         //calculates the first position of the first cell based on the dimensions of the grid and centralize the grid to this position's center 
-        Vector3 midpoint = new Vector3(_xCount * _gridTile.transform.localScale.x / 2, transform.position.y, _zCount * _gridTile.transform.localScale.z / 2);
+        Vector3 midpoint = new Vector3(_gridSize.XCount * _gridTile.transform.localScale.x / 2, transform.position.y, _gridSize.ZCount * _gridTile.transform.localScale.z / 2);
         float xPos = transform.position.x - midpoint.x;
         float zPos = transform.position.z - midpoint.z;
 

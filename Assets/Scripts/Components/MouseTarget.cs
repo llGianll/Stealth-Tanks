@@ -25,10 +25,16 @@ public class MouseTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TargetWithRaycast();
+
+    }
+
+    private void TargetWithRaycast()
+    {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 
-        if(Physics.Raycast(ray, out _hit))
+        if (Physics.Raycast(ray, out _hit))
         {
             Debug.Log(_hit.collider.gameObject);
 
@@ -37,7 +43,6 @@ public class MouseTarget : MonoBehaviour
                 OnChangeTarget(_hit.collider);
             }
         }
-
     }
 
     private bool HasTargetChanged()

@@ -4,24 +4,26 @@ public class Ground : MonoBehaviour
 {
     [SerializeField] Material _originalMaterial;
     [SerializeField] Material _targetedMaterial;
-    
+
+    GridTileProcessor _gridTileProcessor;
     MeshRenderer _meshRenderer;
     Collider _col;
 
     private void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
-        _col = GetComponent<Collider>();
+        _gridTileProcessor = transform.parent.GetComponent<GridTileProcessor>();
+        _col = _gridTileProcessor.GetComponent<Collider>();
     }
 
     private void OnEnable()
     {
-        MouseTarget.Instance.OnChangeTarget += SwapGroundMaterial;
+        _gridTileProcessor.OnMouseHover += SwapGroundMaterial;
     }
 
     private void OnDisable()
     {
-        MouseTarget.Instance.OnChangeTarget -= SwapGroundMaterial;
+        _gridTileProcessor.OnMouseHover -= SwapGroundMaterial;
     }
 
     public void SwapGroundMaterial(Collider target)
@@ -30,7 +32,6 @@ public class Ground : MonoBehaviour
             _meshRenderer.material = _targetedMaterial; 
         else 
             _meshRenderer.material = _originalMaterial; 
-            
     }
 
 }

@@ -8,13 +8,28 @@ public class Enemy : MonoBehaviour, IHealth
     [SerializeField] float _damagePerHit = 1f;
 
     float _currentHealth;
-    
+    public GridTileProcessor GridTile { get; set; }
+
+    private void OnEnable()
+    {
+        if(GridTile != null)
+            GridTile.OnClicked += DecreaseHealth;
+    }
+
+    private void OnDisable()
+    {
+        if (GridTile != null)
+            GridTile.OnClicked -= DecreaseHealth;
+    }
+
     private void Start()
     {
         _currentHealth = _maxHealth;
     }
+
     public void DecreaseHealth()
     {
+        Debug.Log("Damaged Tank");
         _currentHealth -= _damagePerHit;
 
         if (_currentHealth <= 0)

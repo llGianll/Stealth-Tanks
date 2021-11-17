@@ -5,18 +5,13 @@ using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
 {
-    [SerializeField] Transform _groundPrefab;
+    [SerializeField] GameObject _gridTile;
 
     [Header("Grid Size")]
     [SerializeField] [Range(1, 20)] int _xCount = 5;
     [SerializeField] [Range(1, 20)] int _zCount = 5;
 
-    List<GridContent> _gridContents = new List<GridContent>();
-    
-    public List<GridContent> GridContents 
-    {
-        get { return _gridContents; }
-    }
+    List<GridTileProcessor> _gridTileProcessors = new List<GridTileProcessor>();
 
     void Start()
     {
@@ -25,7 +20,7 @@ public class GridGenerator : MonoBehaviour
 
     private void GenerateGrid()
     {
-        Vector3 groundScale = _groundPrefab.localScale;
+        Vector3 groundScale = _gridTile.transform.localScale;
         Vector3 firstCellPos = transform.position;
 
         for (int i = 0; i < _xCount; i++)
@@ -33,19 +28,20 @@ public class GridGenerator : MonoBehaviour
             for (int j = 0; j < _zCount; j++)
             {
                 Vector3 cellPosition = new Vector3(firstCellPos.x + i, firstCellPos.y, firstCellPos.z + j);
-                GameObject ground = Instantiate(_groundPrefab.gameObject, cellPosition, Quaternion.identity);
-                ground.transform.parent = this.transform;
-                _gridContents.Add(new GridContent(ground, _gridContents.Count));
+                GameObject gridTile = Instantiate(_gridTile, cellPosition, Quaternion.identity);
+                gridTile.transform.parent = this.transform;
+                gridTile.GetComponent<GridTileProcessor>().CellIndex = _gridTileProcessors.Count;
+                _gridTileProcessors.Add(gridTile.GetComponent<GridTileProcessor>());
             }
         }
 
-        EnemySpawner.instance.SpawnEnemies(_gridContents);
+        EnemySpawner.instance.SpawnEnemies(_gridTileProcessors);
     }
 
     private Vector3 CalculateFirstCellPos()
     {
         //calculates the first position of the first cell based on the dimensions of the grid and centralize the grid to this position's center 
-        Vector3 midpoint = new Vector3(_xCount * _groundPrefab.localScale.x / 2, transform.position.y, _zCount * _groundPrefab.localScale.z / 2);
+        Vector3 midpoint = new Vector3(_xCount * _gridTile.transform.localScale.x / 2, transform.position.y, _zCount * _gridTile.transform.localScale.z / 2);
         float xPos = transform.position.x - midpoint.x;
         float zPos = transform.position.z - midpoint.z;
 

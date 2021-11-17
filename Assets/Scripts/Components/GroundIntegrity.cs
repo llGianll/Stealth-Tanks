@@ -9,11 +9,25 @@ public class GroundIntegrity : MonoBehaviour, IHealth
     [SerializeField] float _damagePerHit = 50;
     
     float _currentHealth;
-    Rigidbody rb;
+    Rigidbody _rb;
+    GridTileProcessor _gridTileProcessor;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
+        _gridTileProcessor = transform.parent.GetComponent<GridTileProcessor>();
+    }
+
+    private void OnEnable()
+    {
+        if(_gridTileProcessor != null)
+            _gridTileProcessor.OnClicked += DecreaseHealth;
+    }
+
+    private void OnDisable()
+    {
+        if (_gridTileProcessor != null)
+            _gridTileProcessor.OnClicked -= DecreaseHealth;
     }
 
     private void Start()
@@ -36,7 +50,7 @@ public class GroundIntegrity : MonoBehaviour, IHealth
 
     private void DropGroundTile()
     {
-        rb.useGravity = true;
-        rb.isKinematic = false;
+        _rb.useGravity = true;
+        _rb.isKinematic = false;
     }
 }

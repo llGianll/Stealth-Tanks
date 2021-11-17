@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 1486065753185277074, guid: 7d0623798be74c948a253c67730b70a8, type: 3}
-  _spawnCount: 15
+  _spawnCount: 10
   _spawnYOffset: 0.6
 --- !u!1 &260000641
 GameObject:
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8859889cedc5bd24b92def0611f47548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundPrefab: {fileID: 2276919246180167106, guid: 63070eae86206dd4d88a77681745a090, type: 3}
+  _gridTile: {fileID: 2276919246180167110, guid: 63070eae86206dd4d88a77681745a090, type: 3}
   _xCount: 10
   _zCount: 10
 --- !u!4 &260000643

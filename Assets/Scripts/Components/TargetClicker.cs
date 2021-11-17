@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TargetClicker : MonoBehaviour
 {
-    IHealth _target;
+    GridTileProcessor _targetTile;
     MouseTarget _mouseTarget;
     Collider _targetCollider;
 
@@ -32,9 +32,10 @@ public class TargetClicker : MonoBehaviour
             if (_targetCollider == null)
                 return;
 
-            _target = _targetCollider.GetComponent<IHealth>();
-            if (_target != null)
-                _target.DecreaseHealth();
+            _targetTile = _targetCollider.GetComponent<GridTileProcessor>();
+            
+            if (_targetTile != null)
+                _targetTile.Clicked();
 
         }
     }

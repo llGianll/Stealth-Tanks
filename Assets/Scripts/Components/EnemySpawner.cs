@@ -19,32 +19,36 @@ public class EnemySpawner : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void SpawnEnemies(List<GridContent> gridContents)
+    public void SpawnEnemies(List<GridTileProcessor> gridTileProcessors)
     {
-        int cellCount = gridContents.Count;
+        int cellCount = gridTileProcessors.Count;
 
-        if (_spawnCount > gridContents.Count)
+        if (_spawnCount > gridTileProcessors.Count)
             return;
 
         for (int i = 0; i < _spawnCount;)
         {
             int rand = UnityEngine.Random.Range(0, cellCount);
 
-            if (gridContents[rand].Occupied)
+            if (gridTileProcessors[rand].IsOccupied)
                 continue;
 
-            Spawn(gridContents[rand]);
-            gridContents[rand].Occupied = true;
+            Spawn(gridTileProcessors[rand]);
+            gridTileProcessors[rand].IsOccupied = true;
             i++;
         }
     }
 
-    private void Spawn(GridContent content)
+    private void Spawn(GridTileProcessor gridTile)
     {
-        Vector3 tilePosition = content._groundTile.transform.position;
+        Vector3 tilePosition = gridTile.transform.position;
         Vector3 enemyPos = new Vector3(tilePosition.x, tilePosition.y + _spawnYOffset, tilePosition.z);
         GameObject enemy = Instantiate(_enemy, enemyPos, Quaternion.identity);
-        content.EnemyUnit = enemy;
-        enemy.transform.parent = this.transform;
+        enemy.GetComponent<Enemy>().GridTile = gridTile;
+        enemy.transform.parent = gridTile.transform;
+        
+        //circumvent the onenable/ondisable issue
+        enemy.SetActive(false);
+        enemy.SetActive(true);
     }
 }

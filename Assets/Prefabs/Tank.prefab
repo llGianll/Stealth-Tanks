@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 2
-  _damagePerHit: 1
+  _damagePerHit: 2
 --- !u!1001 &3998602376172795597
 PrefabInstance:
   m_ObjectHideFlags: 0

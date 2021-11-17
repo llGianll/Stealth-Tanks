@@ -42,10 +42,10 @@ BoxCollider:
   m_GameObject: {fileID: 2276919246180167110}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.19, z: 1}
-  m_Center: {x: 0.000000059604645, y: 0.41, z: -0.00000011920929}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000011920929}
 --- !u!114 &33459259799011808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
-  _damagePerHit: 100
+  _damagePerHit: 50
 --- !u!114 &9017531474542946590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -3065444013353556311, guid: 34a226b2b0cae434eab560c2f7b63617, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000012501411042, guid: 34a226b2b0cae434eab560c2f7b63617, type: 3}
       propertyPath: m_Name

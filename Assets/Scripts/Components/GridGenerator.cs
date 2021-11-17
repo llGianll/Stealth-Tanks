@@ -12,8 +12,19 @@ public class GridGenerator : MonoBehaviour
     //[SerializeField] [Range(1, 20)] int ZCount = 5;
     [SerializeField] GridSizeSO _gridSize;
 
-
     List<GridTileProcessor> _gridTileProcessors = new List<GridTileProcessor>();
+
+    public Action<List<GridTileProcessor>> OnFinishedGridGeneration = delegate { };
+
+    public static GridGenerator Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     void Start()
     {
@@ -24,8 +35,6 @@ public class GridGenerator : MonoBehaviour
     {
         Vector3 groundScale = _gridTile.transform.localScale;
         Vector3 firstCellPos = transform.position;
-
-        Debug.Log(_gridSize.XCount);
 
         for (int i = 0; i < _gridSize.XCount; i++)
         {
@@ -39,7 +48,8 @@ public class GridGenerator : MonoBehaviour
             }
         }
 
-        EnemySpawner.instance.SpawnEnemies(_gridTileProcessors);
+        //EnemySpawner.Instance.SpawnEnemies(_gridTileProcessors); //[Fix]: weird two-way dependency, switch to be dependent to this class 
+        OnFinishedGridGeneration(_gridTileProcessors);
     }
 
     private Vector3 CalculateFirstCellPos()

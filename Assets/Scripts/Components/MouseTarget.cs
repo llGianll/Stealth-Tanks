@@ -36,8 +36,6 @@ public class MouseTarget : MonoBehaviour
 
         if (Physics.Raycast(ray, out _hit))
         {
-            Debug.Log(_hit.collider.gameObject);
-
             if (HasTargetChanged())
             {
                 OnChangeTarget(_hit.collider);

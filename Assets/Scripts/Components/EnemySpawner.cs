@@ -9,15 +9,26 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int _spawnCount = 5;
     [SerializeField] float _spawnYOffset = 1f;
 
-    public static EnemySpawner instance;
+    //public static EnemySpawner Instance;
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
+        //if (Instance == null)
+        //    Instance = this;
+        //else
+        //    Destroy(gameObject);
     }
+
+    private void OnDisable()
+    {
+        GridGenerator.Instance.OnFinishedGridGeneration -= SpawnEnemies;
+    }
+
+    private void Start()
+    {
+        GridGenerator.Instance.OnFinishedGridGeneration += SpawnEnemies;
+    }
+
 
     public void SpawnEnemies(List<GridTileProcessor> gridTileProcessors)
     {

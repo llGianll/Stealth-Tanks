@@ -3,13 +3,19 @@ using UnityEngine;
 
 public class MouseTarget : MonoBehaviour
 {
-    public Action<Collider> OnChangeTarget = delegate { };
-    RaycastHit _hit, _previousHit;
-    public static MouseTarget Instance;
-    ITargeting _targetMode;
     [SerializeField] GameObject _targetModeGO;
+    ITargeting _targetMode;
+
+    RaycastHit _hit, _previousHit;
+    Collider _hitCollider;
 
     public ITargeting TargetMode => _targetMode;
+
+    public Collider HitCollider => _hitCollider;
+
+    public Action OnChangeTarget = delegate { };
+
+    public static MouseTarget Instance;
 
     private void Awake()
     {
@@ -38,12 +44,13 @@ public class MouseTarget : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-
         if (Physics.Raycast(ray, out _hit))
         {
+            _hitCollider = _hit.collider;
+
             if (HasTargetChanged())
             {
-                OnChangeTarget(_hit.collider);
+                OnChangeTarget();
             }
         }
     }

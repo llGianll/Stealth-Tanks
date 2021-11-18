@@ -36,8 +36,6 @@ public class GroundVisual : MonoBehaviour
         _maxRGBValue = _meshRenderer.material.color.r;
         _currentRGBValue = Mathf.Lerp(_minRGBValue/RGB_MAX, _maxRGBValue, healthPercentage);
 
-        Debug.Log("UpdateColor");
-
         Color newMaterialColor = new Color(_currentRGBValue, _currentRGBValue, _currentRGBValue, _meshRenderer.material.color.a);
         _meshRenderer.material.color = newMaterialColor;
     }

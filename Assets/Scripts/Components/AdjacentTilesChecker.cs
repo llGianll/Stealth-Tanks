@@ -117,7 +117,7 @@ public class AdjacentTilesChecker : MonoBehaviour
 
         adjacentChecker.Down.IsTargeted = true;
 
-        return CheckUp(adjacentChecker.Down.AdjacentChecker);
+        return CheckDown(adjacentChecker.Down.AdjacentChecker);
     }
 
     private void OnDrawGizmosSelected()

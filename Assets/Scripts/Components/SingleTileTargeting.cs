@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetClicker : MonoBehaviour
+public class SingleTileTargeting : Targeting, ITargeting
 {
     GridTileProcessor _targetTile;
     MouseTarget _mouseTarget;
@@ -39,10 +39,13 @@ public class TargetClicker : MonoBehaviour
 
         }
     }
-    private void AssignTarget(Collider col)
+    private void AssignTarget()
     {
-        _targetCollider = col;
+        _targetCollider = MouseTarget.Instance.HitCollider;
     }
 
-
+    public void AddTarget(GridTileProcessor target)
+    {
+        throw new NotImplementedException();
+    }
 }

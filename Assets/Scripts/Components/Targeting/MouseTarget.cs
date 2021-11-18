@@ -3,13 +3,17 @@ using UnityEngine;
 
 public class MouseTarget : MonoBehaviour
 {
-    [SerializeField] GameObject _targetModeGO;
+    //[SerializeField] GameObject _targetModeGO;
     ITargeting _targetMode;
 
     RaycastHit _hit, _previousHit;
     Collider _hitCollider;
 
-    public ITargeting TargetMode => _targetMode;
+    public ITargeting TargetMode
+    {
+        get { return _targetMode; }
+        set { _targetMode = value; }
+    }
 
     public Collider HitCollider => _hitCollider;
 
@@ -27,17 +31,13 @@ public class MouseTarget : MonoBehaviour
 
     private void Start()
     {
-        _targetMode = _targetModeGO.GetComponent<ITargeting>();
-
-        if (_targetMode != null)
-            Debug.Log("ITargeting exists");
+        //_targetMode = _targetModeGO.GetComponent<ITargeting>();
     }
 
     // Update is called once per frame
     void Update()
     {
         TargetWithRaycast();
-
     }
 
     private void TargetWithRaycast()

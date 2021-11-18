@@ -16,9 +16,23 @@ public class LineTargeting : Targeting, ITargeting
         MouseTarget.Instance.OnChangeTarget += Targeting;
     }
 
+    private void OnEnable()
+    {
+        if(MouseTarget.Instance != null)
+        {
+            MouseTarget.Instance.OnChangeTarget += Targeting;
+            Targeting();
+        }
+
+    }
+
     private void OnDisable()
     {
-        MouseTarget.Instance.OnChangeTarget -= Targeting;
+        if (MouseTarget.Instance != null)
+        {
+            RefreshTargeting();
+            MouseTarget.Instance.OnChangeTarget -= Targeting;
+        }
     }
 
     private void Update()
@@ -69,7 +83,11 @@ public class LineTargeting : Targeting, ITargeting
         }
     }
 
-    private void RefreshTargeting()
+    public void AddTarget(GridTileProcessor target)
+    {
+        _targets.Add(target);
+    }
+    public void RefreshTargeting()
     {
         foreach (var target in _targets)
         {
@@ -78,11 +96,5 @@ public class LineTargeting : Targeting, ITargeting
 
         _targets.Clear();
     }
-
-    public void AddTarget(GridTileProcessor target)
-    {
-        _targets.Add(target);
-    }
-
 }
 

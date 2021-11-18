@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Grid Size")]
+[CreateAssetMenu(menuName = "Level/Grid Size")]
 public class GridSizeSO : ScriptableObject
 {
     [SerializeField] [Range(1, 20)] int _xCount = 5;

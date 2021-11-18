@@ -200,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridTile: {fileID: 2276919246180167110, guid: 63070eae86206dd4d88a77681745a090, type: 3}
   _gridSize: {fileID: 11400000, guid: f30f126026b3cd94689ed7f2a138a807, type: 2}
+  _maxGroundIntegrity: {fileID: 11400000, guid: c2c0aa866cf6a1946a4ee714154049dd, type: 2}
 --- !u!4 &260000643
 Transform:
   m_ObjectHideFlags: 0
@@ -271,6 +272,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2276919246180167110, guid: 63070eae86206dd4d88a77681745a090, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017531474542946590, guid: 63070eae86206dd4d88a77681745a090, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

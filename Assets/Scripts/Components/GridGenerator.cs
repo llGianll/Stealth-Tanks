@@ -7,16 +7,16 @@ public class GridGenerator : MonoBehaviour
 {
     [SerializeField] GameObject _gridTile;
 
-    //[Header("Grid Size")]
-    //[SerializeField] [Range(1, 20)] int XCount = 5;
-    //[SerializeField] [Range(1, 20)] int ZCount = 5;
     [SerializeField] GridSizeSO _gridSize;
+    [SerializeField] MaxGroundIntegritySO _maxGroundIntegrity;
 
     List<GridTileProcessor> _gridTileProcessors = new List<GridTileProcessor>();
 
     public Action<List<GridTileProcessor>> OnFinishedGridGeneration = delegate { };
 
     public static GridGenerator Instance;
+
+    public MaxGroundIntegritySO MaxGroundIntegrityData => _maxGroundIntegrity;
 
     private void Awake()
     {
@@ -48,7 +48,6 @@ public class GridGenerator : MonoBehaviour
             }
         }
 
-        //EnemySpawner.Instance.SpawnEnemies(_gridTileProcessors); //[Fix]: weird two-way dependency, switch to be dependent to this class 
         OnFinishedGridGeneration(_gridTileProcessors);
     }
 

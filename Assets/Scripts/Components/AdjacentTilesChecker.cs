@@ -8,6 +8,8 @@ public class AdjacentTilesChecker : MonoBehaviour
     GridTileProcessor _down;
     GridTileProcessor _left;
     GridTileProcessor _right;
+    GridTileProcessor _currentTile;
+
 
     public GridTileProcessor Up => _up;
     public GridTileProcessor Down => _down;
@@ -17,6 +19,11 @@ public class AdjacentTilesChecker : MonoBehaviour
     [SerializeField] float _rayLength = 0.6f;
 
     private RaycastHit _hit;
+
+    private void Awake()
+    {
+        _currentTile = GetComponent<GridTileProcessor>();
+    }
 
     private void OnEnable()
     {
@@ -46,6 +53,71 @@ public class AdjacentTilesChecker : MonoBehaviour
         //right
         if(Physics.Raycast(transform.position, transform.forward * _rayLength, out _hit))
             _right = _hit.collider.GetComponent<GridTileProcessor>();
+    }
+
+    public void HorizontalChecker()
+    {
+        MouseTarget.Instance.TargetMode.AddTarget(_currentTile);
+        _currentTile.IsTargeted = true;
+        CheckLeft(this);
+        CheckRight(this);
+    }
+
+    public void VerticalChecker()
+    {
+        MouseTarget.Instance.TargetMode.AddTarget(_currentTile);
+        _currentTile.IsTargeted = true;
+        CheckUp(this);
+        CheckDown(this);
+    }
+
+    public AdjacentTilesChecker CheckLeft(AdjacentTilesChecker adjacentChecker)
+    {
+        //[Refactor] duplication of logic 
+        if (adjacentChecker.Left == null)
+            return null;
+
+        MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Left);
+
+        adjacentChecker.Left.IsTargeted = true;
+
+        return CheckLeft(adjacentChecker.Left.AdjacentChecker);
+    }
+
+    public AdjacentTilesChecker CheckRight(AdjacentTilesChecker adjacentChecker)
+    {
+        if (adjacentChecker.Right == null)
+            return null;
+
+        MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Right);
+
+        adjacentChecker.Right.IsTargeted = true;
+
+        return CheckRight(adjacentChecker.Right.AdjacentChecker);
+    }
+
+    public AdjacentTilesChecker CheckUp(AdjacentTilesChecker adjacentChecker)
+    {
+        if (adjacentChecker.Up == null)
+            return null;
+
+        MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Up);
+
+        adjacentChecker.Up.IsTargeted = true;
+
+        return CheckUp(adjacentChecker.Up.AdjacentChecker);
+    }
+
+    public AdjacentTilesChecker CheckDown(AdjacentTilesChecker adjacentChecker)
+    {
+        if (adjacentChecker.Down == null)
+            return null;
+
+        MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Down);
+
+        adjacentChecker.Down.IsTargeted = true;
+
+        return CheckUp(adjacentChecker.Down.AdjacentChecker);
     }
 
     private void OnDrawGizmosSelected()

@@ -26,12 +26,12 @@ public class GridTileVisual : MonoBehaviour
 
     private void OnEnable()
     {
-        _gridTileProcessor.OnMouseHover += HighlightTile;
+        _gridTileProcessor.OnSelectionChange += HighlightTile;
     }
 
     private void OnDisable()
     {
-        _gridTileProcessor.OnMouseHover -= HighlightTile;
+        _gridTileProcessor.OnSelectionChange -= HighlightTile;
     }
 
     private void TileColorSetup()
@@ -43,6 +43,6 @@ public class GridTileVisual : MonoBehaviour
     
     private void HighlightTile()
     {
-        _meshRenderer.material.color = (_gridTileProcessor.IsSelected) ? _activeMaterialColor : _inactiveMaterialColor;
+        _meshRenderer.material.color = (_gridTileProcessor.IsTargeted) ? _activeMaterialColor : _inactiveMaterialColor;
     }
 }

@@ -6,6 +6,10 @@ public class MouseTarget : MonoBehaviour
     public Action<Collider> OnChangeTarget = delegate { };
     RaycastHit _hit, _previousHit;
     public static MouseTarget Instance;
+    ITargeting _targetMode;
+    [SerializeField] GameObject _targetModeGO;
+
+    public ITargeting TargetMode => _targetMode;
 
     private void Awake()
     {
@@ -17,7 +21,10 @@ public class MouseTarget : MonoBehaviour
 
     private void Start()
     {
+        _targetMode = _targetModeGO.GetComponent<ITargeting>();
 
+        if (_targetMode != null)
+            Debug.Log("ITargeting exists");
     }
 
     // Update is called once per frame

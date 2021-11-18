@@ -6,11 +6,20 @@ using UnityEngine;
 
 public class GridTileProcessor : MonoBehaviour
 {
-    public Action<Collider> OnMouseHover = delegate { };
-    public Action OnClicked = delegate { };
+    Collider _col;
 
     public int CellIndex { get; set; }
     public bool IsOccupied { get; set; } // value can potentially also just be derived from searching the child objects
+    public bool IsSelected { get; set; }
+
+
+    public Action OnMouseHover = delegate { };
+    public Action OnClicked = delegate { };
+
+    private void Awake()
+    {
+        _col = GetComponent<Collider>();
+    }
 
     private void OnEnable()
     {
@@ -24,7 +33,9 @@ public class GridTileProcessor : MonoBehaviour
 
     private void ProcessHoverFeedback(Collider col)
     {
-        OnMouseHover(col);
+        IsSelected = (_col == col) ? true : false;
+
+        OnMouseHover();
     }
 
     public void Clicked()

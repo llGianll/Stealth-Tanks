@@ -50,7 +50,6 @@ public class Enemy : MonoBehaviour, IHealth
         if (!_isRevealed)
             return;
 
-        Debug.Log("Damaged Tank");
         _currentHealth -= _damagePerHit;
 
         if (_currentHealth <= 0)

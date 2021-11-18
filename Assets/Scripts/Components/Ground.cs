@@ -18,17 +18,17 @@ public class Ground : MonoBehaviour
 
     private void OnEnable()
     {
-        _gridTileProcessor.OnMouseHover += SwapGroundMaterial;
+        //_gridTileProcessor.OnMouseHover += SwapGroundMaterial;
     }
 
     private void OnDisable()
     {
-        _gridTileProcessor.OnMouseHover -= SwapGroundMaterial;
+        //_gridTileProcessor.OnMouseHover -= SwapGroundMaterial;
     }
 
-    public void SwapGroundMaterial(Collider target)
+    public void SwapGroundMaterial()
     {
-        if (_col == target)
+        if (_gridTileProcessor.IsSelected)
             _meshRenderer.material = _targetedMaterial; 
         else 
             _meshRenderer.material = _originalMaterial; 

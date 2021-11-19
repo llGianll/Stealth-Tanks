@@ -2821,6 +2821,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424c9567d1a495544911ec3a3ee22e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gridTileLM:
+    serializedVersion: 2
+    m_Bits: 257
 --- !u!4 &1170664841
 Transform:
   m_ObjectHideFlags: 0
@@ -3390,7 +3393,7 @@ GameObject:
   - component: {fileID: 1420055580}
   - component: {fileID: 1420055579}
   - component: {fileID: 1420055578}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Out of Bounds Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}

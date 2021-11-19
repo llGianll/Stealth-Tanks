@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +11,24 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
-        //GameObject targeting = Instantiate(_targetMode.gameObject, transform.position, Quaternion.identity);
-        //targeting.transform.parent = this.transform;
+
     }
-    
-    
+
+    private void OnEnable()
+    {
+        MouseTarget.Instance.OnClicked += UseWeapon;
+    }
+
+    private void OnDisable()
+    {
+        MouseTarget.Instance.OnClicked -= UseWeapon;
+    }
+
+    private void UseWeapon()
+    {
+        if(MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>() != null)
+        {
+            GameManager.Instance.DecreaseEnergy(_energyCost);
+        }
+    }
 }

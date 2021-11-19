@@ -13,7 +13,16 @@ public class LineTargeting : Targeting, ITargeting
     private void Start()
     {
         _targetingOrientation = TargetingOrientation.Horizontal;
-        MouseTarget.Instance.OnChangeTarget += Targeting;
+        MouseTarget.Instance.OnChangeTarget += Targeting; 
+        MouseTarget.Instance.OnClicked += ClickTarget;
+    }
+
+    private void ClickTarget()
+    {
+        foreach (var target in _targets)
+        {
+            target.Clicked();
+        }
     }
 
     private void OnEnable()
@@ -21,6 +30,7 @@ public class LineTargeting : Targeting, ITargeting
         if(MouseTarget.Instance != null)
         {
             MouseTarget.Instance.OnChangeTarget += Targeting;
+            MouseTarget.Instance.OnClicked += ClickTarget;
             Targeting();
         }
 
@@ -37,15 +47,6 @@ public class LineTargeting : Targeting, ITargeting
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) //[Refactor] Create an Input class to centralize all inputs 
-        {
-            foreach (var target in _targets)
-            {
-                target.Clicked();
-            }
-
-        }
-
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             SwitchTargetingOrientation();

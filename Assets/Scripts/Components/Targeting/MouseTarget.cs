@@ -4,6 +4,7 @@ using UnityEngine;
 public class MouseTarget : MonoBehaviour
 {
     //[SerializeField] GameObject _targetModeGO;
+    [SerializeField] LayerMask _gridTileLM;
     ITargeting _targetMode;
 
     RaycastHit _hit, _previousHit;
@@ -19,7 +20,7 @@ public class MouseTarget : MonoBehaviour
 
     public Action OnChangeTarget = delegate { };
 
-    public Action OnClick = delegate { };
+    public Action OnClicked = delegate { };
 
     public static MouseTarget Instance;
 
@@ -42,7 +43,8 @@ public class MouseTarget : MonoBehaviour
         TargetWithRaycast();
         if (Input.GetMouseButtonDown(0))
         {
-            OnClick();
+            Debug.Log("CLICK MOUSE ");
+            OnClicked();
         }
     }
 
@@ -50,7 +52,7 @@ public class MouseTarget : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out _hit))
+        if (Physics.Raycast(ray, out _hit, Mathf.Infinity, _gridTileLM))
         {
             _hitCollider = _hit.collider;
 

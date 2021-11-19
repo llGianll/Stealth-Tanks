@@ -12,6 +12,7 @@ public class SingleTileTargeting : Targeting, ITargeting
         if (MouseTarget.Instance != null)
         {
             MouseTarget.Instance.OnChangeTarget += Targeting;
+            MouseTarget.Instance.OnClicked += ClickTarget;
             Targeting();
             Debug.Log("Enabled by:" + gameObject.name);
         }
@@ -24,22 +25,27 @@ public class SingleTileTargeting : Targeting, ITargeting
         {
             RefreshTargeting();
             MouseTarget.Instance.OnChangeTarget -= Targeting;
+            MouseTarget.Instance.OnClicked -= ClickTarget;
         }
     }
 
     private void Start()
     {
         MouseTarget.Instance.OnChangeTarget += Targeting;
+        MouseTarget.Instance.OnClicked += ClickTarget;
+    }
+
+    private void ClickTarget()
+    {
+        if (_targetTile != null)
+            _targetTile.Clicked();
     }
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            if (_targetTile != null)
-                _targetTile.Clicked();
-        }
+
     }
+
     private void Targeting()
     {
         AddTarget(MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>());

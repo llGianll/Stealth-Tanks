@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OilTankerTruck : EnemyUnit
 {
-
+    [SerializeField] GameObject _explosionRadiusGO;
     public override void DecreaseHealth()
     {
         if (!_isRevealed)
@@ -18,8 +18,12 @@ public class OilTankerTruck : EnemyUnit
 
     public override void Death()
     {
-        gameObject.SetActive(false);
         Explode();
+        _explosionRadiusGO.SetActive(true);
+        _explosionRadiusGO.GetComponent<ExplosionRadius>().Explode();
+        _enemyModel.SetActive(false);
+        //_explosionRadiusGO.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     void Explode()

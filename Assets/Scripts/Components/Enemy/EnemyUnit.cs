@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class EnemyUnit : MonoBehaviour, IHealth
 {
-    [SerializeField] GameObject _enemyModel;
+    [SerializeField] protected GameObject _enemyModel;
     [SerializeField] protected float _maxHealth = 5f;
     [SerializeField] protected float _damagePerHit = 1f;
 

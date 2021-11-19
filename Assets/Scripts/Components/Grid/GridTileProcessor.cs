@@ -12,6 +12,9 @@ public class GridTileProcessor : MonoBehaviour
 
     public int CellIndex { get; set; }
     public bool IsOccupied { get; set; } // value can potentially also just be derived from searching the child objects
+
+    public bool IsClicked { get; set; }
+
     public bool IsTargeted 
     {
         get { return _isTargeted; } 
@@ -51,6 +54,7 @@ public class GridTileProcessor : MonoBehaviour
 
     public void Clicked()
     {
+        IsClicked = true;
         OnClicked();
     }
 }

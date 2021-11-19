@@ -13,9 +13,6 @@ public class Weapon : MonoBehaviour
         //GameObject targeting = Instantiate(_targetMode.gameObject, transform.position, Quaternion.identity);
         //targeting.transform.parent = this.transform;
     }
-
-    void Update()
-    {
-        
-    }
+    
+    
 }

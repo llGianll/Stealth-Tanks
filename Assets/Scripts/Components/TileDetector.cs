@@ -11,11 +11,6 @@ public class TileDetector : MonoBehaviour
     [SerializeField] int _tileCoverageCount = 1; 
     public List<GridTileProcessor> GridTilesHit => _gridTilesHit;
 
-    private void OnEnable()
-    {
-        
-    }
-
     private void ClearHitList()
     {
         _gridTilesHit.Clear();

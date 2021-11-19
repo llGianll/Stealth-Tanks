@@ -19,6 +19,8 @@ public class MouseTarget : MonoBehaviour
 
     public Action OnChangeTarget = delegate { };
 
+    public Action OnClick = delegate { };
+
     public static MouseTarget Instance;
 
     private void Awake()
@@ -38,6 +40,10 @@ public class MouseTarget : MonoBehaviour
     void Update()
     {
         TargetWithRaycast();
+        if (Input.GetMouseButtonDown(0))
+        {
+            OnClick();
+        }
     }
 
     private void TargetWithRaycast()

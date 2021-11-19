@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: Down Cast (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -40,10 +40,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1211287146501557520}
   - component: {fileID: 316469506897356658}
-  - component: {fileID: 339607228101694025}
   - component: {fileID: 5339590626159921828}
+  - component: {fileID: 3473117238107531798}
   m_Layer: 0
-  m_Name: Oil Tanker
+  m_Name: Oil Tanker Truck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,18 +81,6 @@ MonoBehaviour:
   _maxHealth: 2
   _damagePerHit: 2
   _enemyModel: {fileID: 0}
---- !u!114 &339607228101694025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258185204077523056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd774af4501ac8240900085e6e4b9bc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5339590626159921828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +93,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbadf5c14516b9e4a90d970bce0357b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tileDetector: {fileID: 811986571899768973}
+--- !u!114 &3473117238107531798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258185204077523056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe871a459675e0d4a8fbb83bfc258ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyModel: {fileID: 453315778295659342}
+  _maxHealth: 2
+  _damagePerHit: 1
 --- !u!1 &4262949725605469185
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +264,10 @@ PrefabInstance:
       propertyPath: _raycastChecks.Array.data[1]
       value: 
       objectReference: {fileID: 8210819577852388335}
+    - target: {fileID: 3646440195852546748, guid: f06b2427a1aada54ab6eb88b2e924a8b, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 5764808076990029817, guid: f06b2427a1aada54ab6eb88b2e924a8b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -271,6 +279,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1019624698997712743, guid: f06b2427a1aada54ab6eb88b2e924a8b, type: 3}
   m_PrefabInstance: {fileID: 426267649061849369}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &811986571899768973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1057969154510526868, guid: f06b2427a1aada54ab6eb88b2e924a8b, type: 3}
+  m_PrefabInstance: {fileID: 426267649061849369}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bed6ec38c17aad44b4578a230be5121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6191005055820863200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5764808076990029817, guid: f06b2427a1aada54ab6eb88b2e924a8b, type: 3}
@@ -349,6 +368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: effd6c573175d114bacfddf1faa1d4a7, type: 3}
+--- !u!1 &453315778295659342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 157538, guid: effd6c573175d114bacfddf1faa1d4a7, type: 3}
+  m_PrefabInstance: {fileID: 453315778295766060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &453315778295425354 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 456038, guid: effd6c573175d114bacfddf1faa1d4a7, type: 3}

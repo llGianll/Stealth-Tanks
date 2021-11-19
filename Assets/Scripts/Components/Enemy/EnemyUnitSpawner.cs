@@ -37,13 +37,14 @@ public class EnemyUnitSpawner : MonoBehaviour
 
                 if (!IsSpawned(gridTiles[rand], enemy.EnemyUnitPrefab))
                     continue;
-                    
+
                 i++;
             }
         }
     }
     private bool IsSpawned(GridTileProcessor gridTile, GameObject enemyPrefab)
     {
+        //[Todo] set enemy spawner as parent of enemy prefabs for organization
         Vector3 tilePosition = gridTile.transform.position;
         Vector3 enemyPos = new Vector3(tilePosition.x, tilePosition.y + _spawnYOffset, tilePosition.z);
 

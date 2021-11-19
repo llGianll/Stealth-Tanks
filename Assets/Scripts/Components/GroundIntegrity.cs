@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GroundIntegrity : MonoBehaviour, IHealth
 {
-    float _maxHealth, _currentHealth;
+    float _maxHealth;
     float _damagePerHit = 1;
     
     Rigidbody _rb;
@@ -18,6 +18,8 @@ public class GroundIntegrity : MonoBehaviour, IHealth
         get { return _maxHealth; }
         set { _maxHealth = value; }
     }
+
+    public float CurrentHealth { get; set; }
 
     private void Awake()
     {
@@ -49,21 +51,21 @@ public class GroundIntegrity : MonoBehaviour, IHealth
     {
         int min = 1;
         int max = (int)(_maxHealth + _damagePerHit);
-        _currentHealth = UnityEngine.Random.Range(min, max);
+        CurrentHealth = UnityEngine.Random.Range(min, max);
     }
 
     private float GetHealthPercentage()
     {
-        return _currentHealth / _maxHealth;
+        return CurrentHealth / _maxHealth;
     }
 
     public void DecreaseHealth()
     {
-        _currentHealth -= _damagePerHit;
+        CurrentHealth -= _damagePerHit;
 
         OnHealthModified(GetHealthPercentage());
 
-        if (_currentHealth <= 0)
+        if (CurrentHealth <= 0)
             Death();
     }
 

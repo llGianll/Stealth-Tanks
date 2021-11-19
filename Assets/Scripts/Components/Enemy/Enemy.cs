@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    [Todo] get references to all tiles below enemy as soon as placement is finalized
+ */
+
 public class Enemy : MonoBehaviour, IHealth
 {
     [SerializeField] float _maxHealth = 2f;

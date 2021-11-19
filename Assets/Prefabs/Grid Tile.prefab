@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7024393231024327859}
   - component: {fileID: 33459259799011808}
   - component: {fileID: 1565789371550268486}
+  - component: {fileID: 6943644009654735033}
   m_Layer: 0
   m_Name: Grid Tile
   m_TagString: Untagged
@@ -74,6 +75,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rayLength: 0.6
+--- !u!54 &6943644009654735033
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276919246180167110}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 0
 --- !u!54 &8501165488148000859
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -114,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124e215ca4751a141b3b6ee6b96677b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minRGBValue: 110
+  _minRGBValue: 60
 --- !u!1 &3737883208408997441
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5867592773998644909, guid: 22c0941855ab32f46af7aca87c20eaaf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5892174251333959243, guid: 22c0941855ab32f46af7aca87c20eaaf, type: 3}
       propertyPath: m_RootOrder

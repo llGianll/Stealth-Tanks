@@ -32,6 +32,8 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemies(List<GridTileProcessor> gridTileProcessors)
     {
+        //[Todo] Copy the list, then remove the content with a given index once it's used 
+
         int cellCount = gridTileProcessors.Count;
 
         if (_spawnCount > gridTileProcessors.Count)

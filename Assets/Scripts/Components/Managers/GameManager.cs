@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         if(_currentEnemyCount <= 0)
         {
             Time.timeScale = 0f;
+            OnGameEnd();
         }
     }
 

@@ -33,8 +33,6 @@ public class EnemyUnitSpawner : MonoBehaviour
                 if (gridTiles[rand].IsOccupied)
                     continue;
 
-
-
                 if (!IsSpawned(gridTiles[rand], enemy))
                     continue;
 

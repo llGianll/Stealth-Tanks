@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] int _totalEnergy = 100;
     [SerializeField] EnemySpawnListSO _enemySpawnList;
 
     int _currentEnergy;
+    int _currentEnemyCount;
+
     List<EnemySpawnData> _enemyLiveCount = new List<EnemySpawnData>();
 
     public static GameManager Instance;
@@ -24,9 +25,23 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void OnEnable()
+    {
+        OnEnemyCountUpdate += CheckGameEnd;
+    }
+
+    private void OnDisable()
+    {
+        OnEnemyCountUpdate -= CheckGameEnd;
+    }
+    private void CheckGameEnd(List<EnemySpawnData> arg1, string arg2)
+    {
+        //Show End Game UI with button, pause the game 
+        Time.timeScale = 0f;
+    }
+
     void Start()
     {
-        _currentEnergy = _totalEnergy;
         CopyEnemySpawnList();
     }
 
@@ -43,6 +58,8 @@ public class GameManager : MonoBehaviour
             _enemyLiveCount[index].ID = item.ID;
 
             index++;
+
+            _currentEnemyCount+= item.Count;
         }
     }
 
@@ -51,16 +68,14 @@ public class GameManager : MonoBehaviour
         foreach (var item in _enemyLiveCount)
         {
             if (item.ID == id)
+            {
                 item.Count--;
+                _currentEnemyCount--;
+            }
 
         }
 
         OnEnemyCountUpdate(_enemyLiveCount, id);
     }
 
-    public void DecreaseEnergy(int energyCost)
-    {
-        _currentEnergy -= energyCost;
-        _currentEnergy = Mathf.Clamp(_currentEnergy, 0, _totalEnergy);
-    }
 }

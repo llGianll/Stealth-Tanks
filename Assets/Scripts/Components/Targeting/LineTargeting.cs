@@ -17,11 +17,10 @@ public class LineTargeting : Targeting, ITargeting
         //MouseTarget.Instance.OnClicked += ClickTarget;
     }
 
-    private void ClickTarget()
+    public void ClickTarget()
     {
         foreach (var target in _targets)
         {
-            Debug.Log("LINE TARGET CLICKED!");
             target.Clicked();
         }
     }
@@ -31,7 +30,7 @@ public class LineTargeting : Targeting, ITargeting
         if(MouseTarget.Instance != null)
         {
             MouseTarget.Instance.OnChangeTarget += Targeting;
-            MouseTarget.Instance.OnClicked += ClickTarget;
+            //MouseTarget.Instance.OnClicked += ClickTarget;
             Targeting();
         }
 

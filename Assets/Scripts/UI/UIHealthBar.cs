@@ -38,7 +38,6 @@ public class UIHealthBar : MonoBehaviour
 
     private void InitializeHealthBar(float maxHealth)
     {
-        Debug.Log(maxHealth);
         for (int i = 0; i < maxHealth; i++)
         {
             GameObject healthSegment = Instantiate(_healthSegmentPrefab, _segmentLayout);

@@ -16,29 +16,17 @@ public class TileDetector : MonoBehaviour
         _gridTilesHit.Clear();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-
-        //GridTileProcessor gridTiles = other.gameObject.GetComponent<GridTileProcessor>();
-
-        //if (gridTiles != null)
-        //    _gridTilesHit.Add(gridTiles);
-    }
-
     public bool AllTilesAvailable()
     {
-        //Debug.Log(_gridTilesHit.Count);
         ClearHitList();
         DetectAllTiles();
 
         if (_gridTilesHit.Count <= 0)
             return false;
 
-        //Debug.Log(_gridTilesHit.Count < _tileCoverageCount);
-
         if (_gridTilesHit.Count < _tileCoverageCount)
         {
-            Debug.Log("not enough tile coverage");
+            //Debug.Log("not enough tile coverage");
             return false;
         }
 

@@ -7,11 +7,11 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] protected int _energyCost = 2;
-    [SerializeField] protected GameObject _targetMode;
+    protected ITargeting _targetMode;
 
-    void Start()
+    private void Awake()
     {
-
+        _targetMode = GetComponentInChildren<ITargeting>();
     }
 
     private void OnEnable()
@@ -30,7 +30,8 @@ public class Weapon : MonoBehaviour
     {
         if(MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>() != null)
         {
-            GameManager.Instance.DecreaseEnergy(_energyCost);
+            if(EnergyManager.Instance.DecreaseEnergy(_energyCost))
+                _targetMode.ClickTarget();
         }
     }
 }

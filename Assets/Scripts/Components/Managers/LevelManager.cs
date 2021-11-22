@@ -20,8 +20,18 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("WinScene");
     }
 
-    public void MainMenu()
+    public void StartMenu()
     {
+        SceneManager.LoadScene("StartMenu");
+    }
 
+    public void NextScene()
+    {
+        SceneManager.LoadScene("Level_1");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

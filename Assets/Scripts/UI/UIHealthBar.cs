@@ -22,18 +22,7 @@ public class UIHealthBar : MonoBehaviour
         if (Unit != null)
         {
             Unit.OnHealthUpdate += UpdateHealthBar;
-            Debug.Log("ENABLE HEALTH");
         }
-    }
-
-    private void OnDisable()
-    {
-        //if (Unit != null)
-        //{
-        //    Unit.OnHealthUpdate -= UpdateHealthBar;
-        //    Debug.Log("Disable Health");
-
-        //}
     }
 
     private void InitializeHealthBar(float maxHealth)

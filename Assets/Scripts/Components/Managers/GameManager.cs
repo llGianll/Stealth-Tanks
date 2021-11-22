@@ -37,7 +37,10 @@ public class GameManager : MonoBehaviour
     private void CheckGameEnd(List<EnemySpawnData> arg1, string arg2)
     {
         //Show End Game UI with button, pause the game 
-        Time.timeScale = 0f;
+        if(_currentEnemyCount <= 0)
+        {
+            Time.timeScale = 0f;
+        }
     }
 
     void Start()

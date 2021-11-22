@@ -45,11 +45,18 @@ public class EnemyUnitSpawner : MonoBehaviour
         Vector3 tilePosition = gridTile.transform.position;
         Vector3 enemyPos = new Vector3(tilePosition.x, tilePosition.y + _spawnYOffset, tilePosition.z);
 
-        GameObject enemy = Instantiate(enemySpawnData.EnemyUnitPrefab, enemyPos, Quaternion.identity);
-        enemy.GetComponent<EnemyUnit>().ID = enemySpawnData.ID;
-        enemy.transform.parent = this.transform;
+        GameObject spawnedEnemy = Instantiate(enemySpawnData.EnemyUnitPrefab, enemyPos, Quaternion.identity);
+        spawnedEnemy.GetComponent<EnemyUnit>().ID = enemySpawnData.ID;
+        spawnedEnemy.transform.parent = this.transform;
 
-        EnemyGridPlacement enemyPlacement = enemy.GetComponent<EnemyGridPlacement>();
-        return enemyPlacement.IsPlacementDetermined();
+        EnemyGridPlacement enemyPlacement = spawnedEnemy.GetComponent<EnemyGridPlacement>();
+        
+        if (enemyPlacement.IsPlacementDetermined())
+            return true;
+        else
+        {
+            Destroy(spawnedEnemy);
+            return false;
+        }
     }
 }

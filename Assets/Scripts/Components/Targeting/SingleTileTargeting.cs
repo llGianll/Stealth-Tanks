@@ -14,7 +14,6 @@ public class SingleTileTargeting : Targeting, ITargeting
             MouseTarget.Instance.OnChangeTarget += Targeting;
             //MouseTarget.Instance.OnClicked += ClickTarget;
             Targeting();
-            Debug.Log("Enabled by:" + gameObject.name);
         }
 
     }

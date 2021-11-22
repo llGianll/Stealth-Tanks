@@ -43,7 +43,6 @@ public class MouseTarget : MonoBehaviour
         TargetWithRaycast();
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("CLICK MOUSE ");
             OnClicked();
         }
     }
@@ -61,6 +60,7 @@ public class MouseTarget : MonoBehaviour
                 OnChangeTarget();
             }
         }
+
     }
 
     private bool HasTargetChanged()

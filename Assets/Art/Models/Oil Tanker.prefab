@@ -57,6 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bed6ec38c17aad44b4578a230be5121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _raycastChecks: []
+  _raycastLength: 1
+  _tileCoverageCount: 1
 --- !u!1 &4914523628987486441
 GameObject:
   m_ObjectHideFlags: 0

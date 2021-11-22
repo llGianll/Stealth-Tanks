@@ -55,8 +55,8 @@ public class SingleTileTargeting : Targeting, ITargeting
     {
         RefreshTargeting();
 
-        //if (target == null)
-        //    return;
+        if (target == null)
+            return;
 
         _targetTile = target;
         _targetTile.IsTargeted = true;

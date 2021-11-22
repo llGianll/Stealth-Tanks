@@ -9,11 +9,12 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth
     [SerializeField] protected float _maxHealth = 5f;
     [SerializeField] protected float _damagePerHit = 1f;
 
+    public string ID { get; set; }
+
     EnemyGridPlacement _enemyPlacement;
-    int _tileCoverageCount = 0, _currentRevealedCount = 0;
     List<GridTileProcessor> _tilesCovered = new List<GridTileProcessor>();
 
-    protected bool _isRevealed;
+    protected bool _isRevealed, _isDead;
 
     public virtual float CurrentHealth { get; set; }
 
@@ -33,7 +34,7 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth
 
         foreach (var gridTiles in _tilesCovered)
         {
-            gridTiles.OnClicked -= CheckIfFullyRevealed;
+            gridTiles.OnClicked -= ProcessClick;
             gridTiles.OnClicked -= DecreaseHealth;
         }
     }
@@ -49,13 +50,22 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth
         _tilesCovered = gridTiles;
         foreach (var tile in gridTiles)
         {
-            tile.OnClicked += CheckIfFullyRevealed;
-            tile.OnClicked += DecreaseHealth;
+            tile.OnClicked += ProcessClick;
+            //tile.OnClicked += DecreaseHealth;
         }
+    }
+
+    private void ProcessClick()
+    {
+        DecreaseHealth();
+        CheckIfFullyRevealed();
     }
 
     private void CheckIfFullyRevealed()
     {
+        if (_isRevealed)
+            return;
+
         foreach (var gridTiles in _tilesCovered)
         {
             if (!gridTiles.IsClicked)
@@ -71,8 +81,20 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth
         _enemyModel.SetActive(true);
     }
 
+    public void DecreaseHealth()
+    {
+        if (!_isRevealed)
+            return;
 
-    public abstract void DecreaseHealth();
+        CurrentHealth -= _damagePerHit;
 
-    public abstract void Death();
+        if (CurrentHealth <= 0 && !_isDead)
+            Death();
+    }
+
+    public virtual void Death()
+    {
+        GameManager.Instance.DecreaseEnemyCount(ID);
+        _isDead = true;
+    }
 }

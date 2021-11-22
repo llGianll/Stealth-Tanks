@@ -16,12 +16,14 @@ public class Weapon : MonoBehaviour
 
     private void OnEnable()
     {
-        MouseTarget.Instance.OnClicked += UseWeapon;
+        if(MouseTarget.Instance != null)
+            MouseTarget.Instance.OnClicked += UseWeapon;
     }
 
     private void OnDisable()
     {
-        MouseTarget.Instance.OnClicked -= UseWeapon;
+        if (MouseTarget.Instance != null)
+            MouseTarget.Instance.OnClicked -= UseWeapon;
     }
 
     private void UseWeapon()

@@ -14,13 +14,14 @@ public class LineTargeting : Targeting, ITargeting
     {
         _targetingOrientation = TargetingOrientation.Horizontal;
         MouseTarget.Instance.OnChangeTarget += Targeting; 
-        MouseTarget.Instance.OnClicked += ClickTarget;
+        //MouseTarget.Instance.OnClicked += ClickTarget;
     }
 
     private void ClickTarget()
     {
         foreach (var target in _targets)
         {
+            Debug.Log("LINE TARGET CLICKED!");
             target.Clicked();
         }
     }

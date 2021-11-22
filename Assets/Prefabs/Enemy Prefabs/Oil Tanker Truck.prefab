@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 1211287146501557520}
   - component: {fileID: 5339590626159921828}
   - component: {fileID: 3473117238107531798}
+  - component: {fileID: 5970365075445944325}
   m_Layer: 0
   m_Name: Oil Tanker Truck
   m_TagString: Untagged
@@ -93,8 +94,21 @@ MonoBehaviour:
   _enemyModel: {fileID: 453315778295659342}
   _maxHealth: 2
   _damagePerHit: 1
-  _enemyCounter: {fileID: 11400000, guid: e46f1707916ae5e4b84e4003016b082e, type: 2}
   _explosionRadiusGO: {fileID: 4262949725605469185}
+--- !u!114 &5970365075445944325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258185204077523056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d9a978a06e57454aba4db0da4b00ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthBarPrefab: {fileID: 6475221543655607977, guid: 304df3e2a33b75645bded82bf62aaa13, type: 3}
+  _healthBarAnchor: {fileID: 5903952861963628880}
 --- !u!1 &4262949725605469185
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +169,36 @@ MonoBehaviour:
   _tileLayerMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!1 &6629875034872835500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5903952861963628880}
+  m_Layer: 0
+  m_Name: Health Bar Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5903952861963628880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629875034872835500}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.025, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 453315778295425354}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &426267649061849369
 PrefabInstance:
   m_ObjectHideFlags: 0

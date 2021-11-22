@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class EnemyUnit : MonoBehaviour, IHealth
 {
+    //[Refactor] move health related variables and functions to its own class 
     [SerializeField] protected GameObject _enemyModel;
     [SerializeField] protected float _maxHealth = 5f;
     [SerializeField] protected float _damagePerHit = 1f;
@@ -17,6 +18,9 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth
     protected bool _isRevealed, _isDead;
 
     public virtual float CurrentHealth { get; set; }
+
+    public Action<float, float> OnHealthUpdate = delegate { };
+
 
     private void Awake()
     {
@@ -57,6 +61,9 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth
 
     private void ProcessClick()
     {
+        if (_isDead)
+            return;
+
         DecreaseHealth();
         CheckIfFullyRevealed();
     }
@@ -72,13 +79,9 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth
                 return;
         }
 
-        //foreach (var gridTiles in _tilesCovered)
-        //{
-        //    gridTiles.OnClicked -= CheckIfFullyRevealed;
-        //}
-
         _isRevealed = true;
         _enemyModel.SetActive(true);
+        OnHealthUpdate(CurrentHealth, _maxHealth);
     }
 
     public void DecreaseHealth()
@@ -87,6 +90,7 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth
             return;
 
         CurrentHealth -= _damagePerHit;
+        OnHealthUpdate(CurrentHealth, _maxHealth);
 
         if (CurrentHealth <= 0 && !_isDead)
             Death();

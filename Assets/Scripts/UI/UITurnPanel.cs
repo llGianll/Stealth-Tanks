@@ -5,10 +5,13 @@ using System;
 public class UITurnPanel : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _turnText;
+    [SerializeField] TextMeshProUGUI _turnsToClearText;
+    [SerializeField] TurnCounterSO _turnCounterSO;
 
     private void Start()
     {
         TurnManager.Instance.OnCurrentTurnChange += UpdateTurnText;
+        _turnsToClearText.text = "Destroy all enemies within " + _turnCounterSO.TurnsToClear + " turns";
     }
 
     private void OnDisable()

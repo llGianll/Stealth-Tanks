@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Level_1 Turn Counter
   m_EditorClassIdentifier: 
   _levelName: Level 1
+  _turnsToClear: 15

@@ -4,6 +4,7 @@ using UnityEngine;
 public class TurnCounterSO : ScriptableObject
 {
     [SerializeField] string _levelName;
+    [SerializeField] int _turnsToClear;
     int _turnCount;
 
     public string LevelName => _levelName;
@@ -12,5 +13,7 @@ public class TurnCounterSO : ScriptableObject
         get { return _turnCount; }
         set { _turnCount = value; }
     }
+
+    public int TurnsToClear => _turnsToClear;
 
 }

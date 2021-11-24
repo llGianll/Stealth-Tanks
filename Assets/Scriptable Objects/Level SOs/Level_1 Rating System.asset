@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1648309b24e6b41429073d182d4eb020, type: 3}
   m_Name: Level_1 Rating System
   m_EditorClassIdentifier: 
-  oneStar: 20
-  twoStar: 15
-  threeStar: 10
+  oneStar: 15
+  twoStar: 10
+  threeStar: 7

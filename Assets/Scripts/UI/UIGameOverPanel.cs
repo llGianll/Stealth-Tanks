@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class UIGameOverPanel : MonoBehaviour
 {
-    [SerializeField] GameObject _UIParent;
+    [SerializeField] GameObject _winUIParent;
+    [SerializeField] GameObject _loseUIParent;
 
     private void Start()
     {
@@ -17,8 +18,11 @@ public class UIGameOverPanel : MonoBehaviour
         GameManager.Instance.OnGameEnd -= ShowGameOverPanel;
     }
 
-    private void ShowGameOverPanel()
+    private void ShowGameOverPanel(bool win)
     {
-        _UIParent.SetActive(true);
+        if (win)
+            _winUIParent.SetActive(true);
+        else
+            _loseUIParent.SetActive(true);
     }
 }

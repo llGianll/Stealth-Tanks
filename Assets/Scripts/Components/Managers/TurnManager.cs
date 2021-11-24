@@ -9,6 +9,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField] TurnCounterSO _turnCounter;
 
     public Action<int> OnCurrentTurnChange = delegate { };
+    public Action<int> OnLose = delegate { };
 
     private void Awake()
     {
@@ -29,5 +30,9 @@ public class TurnManager : MonoBehaviour
         EnergyManager.Instance.ReplenishEnergyToFull();
         _turnCounter.TurnCount++;
         OnCurrentTurnChange(_turnCounter.TurnCount);
+        if(_turnCounter.TurnCount > _turnCounter.TurnsToClear)
+        {
+            GameManager.Instance.FailedLevel();
+        }
     }
 }

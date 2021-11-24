@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Action<List<EnemySpawnData>, string> OnEnemyCountUpdate = delegate{ };
-    public Action OnGameEnd = delegate { };
+    public Action<bool> OnGameEnd = delegate { };
 
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         if(_currentEnemyCount <= 0)
         {
             Time.timeScale = 0f;
-            OnGameEnd();
+            OnGameEnd(true);
         }
     }
 
@@ -80,6 +80,12 @@ public class GameManager : MonoBehaviour
         }
 
         OnEnemyCountUpdate(_enemyLiveCount, id);
+    }
+
+    public void FailedLevel()
+    {
+        Time.timeScale = 0f;
+        OnGameEnd(false);
     }
 
 }

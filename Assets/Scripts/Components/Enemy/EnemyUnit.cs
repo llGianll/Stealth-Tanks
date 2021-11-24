@@ -1,11 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EnemyUnit : MonoBehaviour, IHealth
 {
     //[Refactor] move health related variables and functions to its own class 
+    //[Refactor] also need to make a general class for revealing other units, instead of just enemies 
     [SerializeField] protected GameObject _enemyModel;
     [SerializeField] protected float _maxHealth = 5f;
     [SerializeField] protected float _damagePerHit = 1f;

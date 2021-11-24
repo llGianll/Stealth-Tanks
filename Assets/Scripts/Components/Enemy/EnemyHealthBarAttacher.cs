@@ -8,12 +8,12 @@ public class EnemyHealthBarAttacher : MonoBehaviour
     [SerializeField] GameObject _healthBarPrefab;
     [SerializeField] Transform _healthBarAnchor;
 
-    EnemyGridPlacement _enemyGridPlacement;
+    UnitGridPlacement _enemyGridPlacement;
     EnemyUnit _enemyUnit;
 
     private void Awake()
     {
-        _enemyGridPlacement = GetComponent<EnemyGridPlacement>();
+        _enemyGridPlacement = GetComponent<UnitGridPlacement>();
         _enemyUnit = GetComponent<EnemyUnit>();
     }
 

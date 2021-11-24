@@ -49,7 +49,7 @@ public class EnemyUnitSpawner : MonoBehaviour
         spawnedEnemy.GetComponent<EnemyUnit>().ID = enemySpawnData.ID;
         spawnedEnemy.transform.parent = this.transform;
 
-        EnemyGridPlacement enemyPlacement = spawnedEnemy.GetComponent<EnemyGridPlacement>();
+        UnitGridPlacement enemyPlacement = spawnedEnemy.GetComponent<UnitGridPlacement>();
         
         if (enemyPlacement.IsPlacementDetermined())
             return true;

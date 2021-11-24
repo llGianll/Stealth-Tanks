@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGridPlacement : MonoBehaviour
+public class UnitGridPlacement : MonoBehaviour
 {
     //[refactor]need to turn this class into Unit Placement class so that it's not limited to placing enemies 
     [SerializeField] TileDetector _tileDetector;

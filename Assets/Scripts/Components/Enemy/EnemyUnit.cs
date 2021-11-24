@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyUnit : MonoBehaviour, IHealth
+public abstract class EnemyUnit : MonoBehaviour, IHealth, IDeath
 {
     //[Refactor] move health related variables and functions to its own class 
     //[Refactor] also need to make a general class for revealing other units, instead of just enemies 
@@ -12,19 +12,24 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth
 
     public string ID { get; set; }
 
-    EnemyGridPlacement _enemyPlacement;
+    UnitGridPlacement _enemyPlacement;
     List<GridTileProcessor> _tilesCovered = new List<GridTileProcessor>();
 
     protected bool _isRevealed, _isDead;
 
     public virtual float CurrentHealth { get; set; }
+    public Action<float, float> OnHealthUpdate { get; set; }
+    public bool IsDead { get { return _isDead; } set { _isDead = value; } }
+    public Action<string> OnDeath { get; set; }
 
-    public Action<float, float> OnHealthUpdate = delegate { };
+    //public Action<float, float> OnHealthUpdate = delegate { };
 
 
     private void Awake()
     {
-        _enemyPlacement = GetComponent<EnemyGridPlacement>();
+        _enemyPlacement = GetComponent<UnitGridPlacement>();
+        OnHealthUpdate = delegate { };
+        OnDeath = delegate { };
     }
 
     private void OnEnable()
@@ -55,7 +60,6 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth
         foreach (var tile in gridTiles)
         {
             tile.OnClicked += ProcessClick;
-            //tile.OnClicked += DecreaseHealth;
         }
     }
 

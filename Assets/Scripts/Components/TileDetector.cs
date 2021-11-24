@@ -10,6 +10,7 @@ public class TileDetector : MonoBehaviour
     [SerializeField] float _raycastLength = 1f;
     [SerializeField] int _tileCoverageCount = 1; 
     public List<GridTileProcessor> GridTilesHit => _gridTilesHit;
+    public List<Transform> RaycastChecks => _raycastChecks;
 
     private void ClearHitList()
     {
@@ -52,5 +53,12 @@ public class TileDetector : MonoBehaviour
                     _gridTilesHit.Add(gridTiles);
             }
         }
+    }
+
+    public bool IsAnyTileUnder()
+    {
+        DetectAllTiles();
+
+        return (_gridTilesHit.Count <= 0);
     }
 }

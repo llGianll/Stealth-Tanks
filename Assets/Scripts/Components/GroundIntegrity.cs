@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundIntegrity : MonoBehaviour, IHealth
+public class GroundIntegrity : MonoBehaviour, IHealth, IDeath
 {
     float _maxHealth;
     float _damagePerHit = 1;
@@ -11,7 +11,7 @@ public class GroundIntegrity : MonoBehaviour, IHealth
     Rigidbody _rb;
     GridTileProcessor _gridTileProcessor;
 
-    public Action<float> OnHealthModified = delegate { };
+    public Action<float, float> OnHealthUpdate { get; set; }
 
     public float MaxHealth
     {
@@ -20,11 +20,16 @@ public class GroundIntegrity : MonoBehaviour, IHealth
     }
 
     public float CurrentHealth { get; set; }
+    public bool IsDead { get; set; }
+    public Action<string> OnDeath { get; set; }
+    public string ID { get; set; }
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _gridTileProcessor = transform.parent.GetComponent<GridTileProcessor>();
+        OnHealthUpdate = delegate { }; //initialize event
+        OnDeath = delegate { };
     }
 
     private void OnEnable()
@@ -42,9 +47,8 @@ public class GroundIntegrity : MonoBehaviour, IHealth
     private void Start()
     {
         _maxHealth = GridGenerator.Instance.MaxGroundIntegrityData.Integrity;
-        //_currentHealth = _maxHealth;
         RandomizeStartingHealth();
-        OnHealthModified(GetHealthPercentage());
+        OnHealthUpdate(CurrentHealth, _maxHealth);
     }
 
     private void RandomizeStartingHealth()
@@ -54,24 +58,19 @@ public class GroundIntegrity : MonoBehaviour, IHealth
         CurrentHealth = UnityEngine.Random.Range(min, max);
     }
 
-    private float GetHealthPercentage()
-    {
-        return CurrentHealth / _maxHealth;
-    }
-
     public void DecreaseHealth()
     {
         CurrentHealth -= _damagePerHit;
 
-        OnHealthModified(GetHealthPercentage());
+        OnHealthUpdate(CurrentHealth, _maxHealth);
 
         if (CurrentHealth <= 0)
-            Death();
+            DropGroundTile();
     }
 
     public void Death()
     {
-         DropGroundTile();
+        gameObject.SetActive(false);
     }
 
     private void DropGroundTile()

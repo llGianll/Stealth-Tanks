@@ -18,26 +18,25 @@ public class GroundVisual : MonoBehaviour
         _meshRenderer = GetComponent<MeshRenderer>();
         _gridTileProcessor = transform.parent.GetComponent<GridTileProcessor>();
         _groundIntegrity = GetComponent<GroundIntegrity>();
-        //_col = _gridTileProcessor.GetComponent<Collider>();
     }
 
     private void OnEnable()
     {
-        _groundIntegrity.OnHealthModified += DarkenGroundMaterial;
+        _groundIntegrity.OnHealthUpdate += DarkenGroundMaterial;
     }
 
     private void OnDisable()
     {
-        _groundIntegrity.OnHealthModified -= DarkenGroundMaterial;
+        _groundIntegrity.OnHealthUpdate -= DarkenGroundMaterial;
     }
 
-    private void DarkenGroundMaterial(float healthPercentage)
+    private void DarkenGroundMaterial(float currentHealth, float maxHealth)
     {
+        float healthPercent = currentHealth / maxHealth;
         _maxRGBValue = _meshRenderer.material.color.r;
-        _currentRGBValue = Mathf.Lerp(_minRGBValue/RGB_MAX, _maxRGBValue, healthPercentage);
+        _currentRGBValue = Mathf.Lerp(_minRGBValue/RGB_MAX, _maxRGBValue, healthPercent);
 
         Color newMaterialColor = new Color(_currentRGBValue, _currentRGBValue, _currentRGBValue, _meshRenderer.material.color.a);
         _meshRenderer.material.color = newMaterialColor;
     }
-
 }

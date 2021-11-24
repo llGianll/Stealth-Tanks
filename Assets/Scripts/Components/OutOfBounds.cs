@@ -6,13 +6,15 @@ public class OutOfBounds : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name + " hit the ground.");
-        other.gameObject.SetActive(false);
+        IDeath death = other.GetComponent<IDeath>();
+        if (death != null)
+            death.Death();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(collision.gameObject.name + " hit the ground.");
-        collision.gameObject.SetActive(false);
+        IDeath death = other.gameObject.GetComponent<IDeath>();
+        if (death != null)
+            death.Death();
     }
 }

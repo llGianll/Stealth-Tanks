@@ -73,7 +73,6 @@ public class UIHealthBar : MonoBehaviour
         while (elapsedTime < _flashDurationInSecs)
         {
             elapsedTime += Time.deltaTime;
-            //alpha = Mathf.Lerp(1f, 0f, elapsedTime / _flashDurationInSecs);
             float percent = elapsedTime / _flashDurationInSecs;
 
             alpha = Mathf.Lerp(1f, 0f, _effectsCurve.Evaluate(percent));

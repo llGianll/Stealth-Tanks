@@ -66,6 +66,7 @@ Transform:
   - {fileID: 850062581152067198}
   - {fileID: 8842456016395728582}
   - {fileID: 380458788409540904}
+  - {fileID: 5478556340865462164}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -111,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyModel: {fileID: 453315778295659342}
+  _camouflageGO: {fileID: 5601666549442564852}
   _maxHealth: 2
   _damagePerHit: 1
   _explosionRadiusGO: {fileID: 4262949725605469185}
@@ -504,6 +506,81 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 456038, guid: effd6c573175d114bacfddf1faa1d4a7, type: 3}
   m_PrefabInstance: {fileID: 453315778295766060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3512679355160383093
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1211287146501557520}
+    m_Modifications:
+    - target: {fileID: -4354720831002428715, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: _unitModel
+      value: 
+      objectReference: {fileID: 453315778295659342}
+    - target: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007926371423919233, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_Name
+      value: Oil Tanker Truck Camouflage
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007926371423919233, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+--- !u!1 &5601666549442564852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9007926371423919233, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+  m_PrefabInstance: {fileID: 3512679355160383093}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5478556340865462164 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8986993203493282273, guid: 6bb96742f5146cf49b151397279a52a9, type: 3}
+  m_PrefabInstance: {fileID: 3512679355160383093}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3653170065687922798
 PrefabInstance:

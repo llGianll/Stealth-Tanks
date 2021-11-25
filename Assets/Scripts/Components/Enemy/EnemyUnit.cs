@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,10 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth, IDeath
 {
     //[Refactor] move health related variables and functions to its own class 
     //[Refactor] also need to make a general class for revealing other units, instead of just enemies 
+    [Header("References")]
     [SerializeField] protected GameObject _enemyModel;
+    [SerializeField] protected GameObject _camouflageGO;
+    [Header("Health")]
     [SerializeField] protected float _maxHealth = 5f;
     [SerializeField] protected float _damagePerHit = 1f;
 
@@ -84,14 +88,24 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth, IDeath
 
         RevealUnit();
 
-        OnHealthUpdate(CurrentHealth, _maxHealth); //call to initialize health bar values upon enemy being revealed
+        
     }
 
     private void RevealUnit()
     {
         _isRevealed = true;
         OnReveal();
+        _camouflageGO.SetActive(true);
+        StartCoroutine(FinishRevealEffects());
+        //_enemyModel.SetActive(true);
+    }
+
+    private IEnumerator FinishRevealEffects()
+    {
+        yield return new WaitUntil(() => _camouflageGO.GetComponent<RevealOverTime>().IsFinished);
+        _camouflageGO.SetActive(false);
         _enemyModel.SetActive(true);
+        OnHealthUpdate(CurrentHealth, _maxHealth); //call to initialize health bar values upon enemy being revealed
     }
 
     public void DecreaseHealth()

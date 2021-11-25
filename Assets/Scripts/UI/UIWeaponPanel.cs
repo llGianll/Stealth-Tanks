@@ -7,17 +7,24 @@ using UnityEngine.UI;
 
 public class UIWeaponPanel : MonoBehaviour
 {
+    [SerializeField] WeaponManager _weaponManager;
     [SerializeField] Image _activeWeaponIcon;
     [SerializeField] TextMeshProUGUI _energyText;
     // Start is called before the first frame update
     void Start()
     {
-        WeaponManager.Instance.OnSwitchWeapon += SwitchActiveWeaponUI;
+        //WeaponManager.Instance.OnSwitchWeapon += SwitchActiveWeaponUI;
+    }
+
+    private void OnEnable()
+    {
+        _weaponManager.OnSwitchWeapon += SwitchActiveWeaponUI;
     }
 
     private void OnDisable()
     {
-        WeaponManager.Instance.OnSwitchWeapon -= SwitchActiveWeaponUI;    
+        _weaponManager.OnSwitchWeapon -= SwitchActiveWeaponUI;
+        //WeaponManager.Instance.OnSwitchWeapon -= SwitchActiveWeaponUI;    
     }
 
     private void SwitchActiveWeaponUI(Sprite weaponIcon, int energyCost)

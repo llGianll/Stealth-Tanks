@@ -124,5 +124,6 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth, IDeath
     {
         GameManager.Instance.DecreaseEnemyCount(ID);
         _isDead = true;
+        OnDeath(ID);
     }
 }

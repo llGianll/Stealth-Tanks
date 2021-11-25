@@ -11,14 +11,14 @@ public class WeaponManager : MonoBehaviour
 
     public Action<Sprite, int> OnSwitchWeapon = delegate { };
 
-    public static WeaponManager Instance;
+    //public static WeaponManager Instance;
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        //if (Instance == null)
+        //    Instance = this;
+        //else
+        //    Destroy(gameObject);
     }
 
     private void Start()

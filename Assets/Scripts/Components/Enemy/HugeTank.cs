@@ -7,7 +7,7 @@ public class HugeTank : EnemyUnit
     public override void Death()
     {
         base.Death();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
 }

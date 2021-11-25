@@ -64,8 +64,8 @@ public class DeathByFalling : MonoBehaviour, IDeath
 
     private void EnableFall()
     {
-        if (IsAlreadyDead())
-            return;
+        //if (IsAlreadyDead())
+        //    return;
 
         _unit.GetComponent<Rigidbody>().isKinematic = false;
         _unit.GetComponent<Rigidbody>().useGravity = true;

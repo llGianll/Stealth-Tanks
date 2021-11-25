@@ -294,4 +294,40 @@ MonoBehaviour:
   _segmentLayout: {fileID: 6475221543510315790}
   _healthSegmentPrefab: {fileID: 2339640023062949755, guid: 1d4828735ba2f33428f6ed4d9dc86d09, type: 3}
   _healthFull: {r: 0.047058824, g: 1, b: 0, a: 1}
-  _healthEmpty: {r: 0.017314093, g: 0.3679245, b: 0, a: 1}
+  _healthEmpty: {r: 0.04705883, g: 1, b: 0, a: 0}
+  _effectsCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.5555393
+      outSlope: 1.5555393
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2895114
+      value: 0.45034638
+      inSlope: 1.1645834
+      outSlope: 1.1645834
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.77362776
+      outSlope: 0.77362776
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _damagedColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashDurationInSecs: 1
+  _minBounceScale: 0.75

@@ -18,12 +18,10 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth, IDeath
     protected bool _isRevealed, _isDead;
 
     public virtual float CurrentHealth { get; set; }
-    public Action<float, float> OnHealthUpdate { get; set; }
     public bool IsDead { get { return _isDead; } set { _isDead = value; } }
+    public Action<float, float> OnHealthUpdate { get; set; }
     public Action<string> OnDeath { get; set; }
-
-    //public Action<float, float> OnHealthUpdate = delegate { };
-
+    public Action OnReveal = delegate { };
 
     private void Awake()
     {
@@ -77,15 +75,23 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth, IDeath
         if (_isRevealed)
             return;
 
+        //check if any tile the enemy covers is not yet marked 
         foreach (var gridTiles in _tilesCovered)
         {
             if (!gridTiles.IsClicked)
                 return;
         }
 
+        RevealUnit();
+
+        OnHealthUpdate(CurrentHealth, _maxHealth); //call to initialize health bar values upon enemy being revealed
+    }
+
+    private void RevealUnit()
+    {
         _isRevealed = true;
+        OnReveal();
         _enemyModel.SetActive(true);
-        OnHealthUpdate(CurrentHealth, _maxHealth);
     }
 
     public void DecreaseHealth()

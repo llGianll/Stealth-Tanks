@@ -6,8 +6,20 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     List<Weapon> _weapons = new List<Weapon>();
-    //Weapon _activeWeapon;
     int _activeWeaponIndex;
+    bool _allowWeaponSwitch;
+
+    public Action<Sprite, int> OnSwitchWeapon = delegate { };
+
+    public static WeaponManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     private void Start()
     {
@@ -30,12 +42,14 @@ public class WeaponManager : MonoBehaviour
 
     private void Update()
     {
+        #region Commented Number Keys Input 
         //[Refactor]temporary hotkey inputs 
         //if (Input.GetKeyDown(KeyCode.Alpha1))
         //    SwitchWeapon(_weapons[0]);
         //else if (Input.GetKeyDown(KeyCode.Alpha2))
         //    SwitchWeapon(_weapons[1]);
-        MouseWheelWeaponCycle();
+        #endregion
+        MouseWheelWeaponCycle(); 
     }
 
     private void MouseWheelWeaponCycle()
@@ -45,8 +59,6 @@ public class WeaponManager : MonoBehaviour
             CalculateWeaponIndex();
             SwitchWeapon(_weapons[_activeWeaponIndex]);
         }
-
-
 
     }
 
@@ -72,6 +84,12 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
-        
+        OnSwitchWeapon(weapon.Icon, weapon.EnergyCost);
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        //dont allow weapon switch when game window isn't focused, very useful when working in the editor
+        _allowWeaponSwitch = focus;
     }
 }

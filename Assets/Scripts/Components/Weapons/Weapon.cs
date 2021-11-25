@@ -7,7 +7,11 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] protected int _energyCost = 2;
+    [SerializeField] Sprite _weaponIcon;
     protected ITargeting _targetMode;
+
+    public int EnergyCost => _energyCost;
+    public Sprite Icon => _weaponIcon;
 
     private void Awake()
     {

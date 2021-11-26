@@ -12,10 +12,14 @@ public class UIEnemyContent : MonoBehaviour
 
     string _enemyID;
 
-
     private void Start()
     {
         GameManager.Instance.OnEnemyCountUpdate += UpdateCount;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnEnemyCountUpdate -= UpdateCount;
     }
 
     private void UpdateCount(List<EnemySpawnData> _enemyList, string id)

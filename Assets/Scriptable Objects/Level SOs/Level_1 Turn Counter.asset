@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelName: Level 1
   _turnsToClear: 15
+  _failMessage: Mission Failed! We'll get 'em next time!
+  _successMessage: Congratulations on beating the level!

@@ -33,6 +33,14 @@ public class UIHealthBar : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        if (Unit != null)
+        {
+            Unit.OnHealthUpdate -= UpdateHealthBar;
+        }
+    }
+
     private void InitializeHealthBar(float maxHealth)
     {
         for (int i = 0; i < maxHealth; i++)

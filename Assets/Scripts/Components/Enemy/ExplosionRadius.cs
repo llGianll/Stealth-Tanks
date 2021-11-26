@@ -9,10 +9,16 @@ public class ExplosionRadius : MonoBehaviour
     BoxCollider col;
     List<Collider> _hitColliders = new List<Collider>();
     [SerializeField] LayerMask _tileLayerMask;
+    [SerializeField] GameObject _explosionPrefab;
 
     private void Awake()
     {
         col = GetComponent<BoxCollider>();
+    }
+
+    private void OnEnable()
+    {
+        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter(Collider other)

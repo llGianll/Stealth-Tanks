@@ -10,11 +10,13 @@ public class UIEndScreen : MonoBehaviour
     [Header("Scriptable Object References")]
     [SerializeField] TurnCounterSO _turnCounterSO;
     [SerializeField] RatingSystemSO _ratingSystemSO;
+    [SerializeField] Animator _animator;
     [Header("UI References")]
     [SerializeField] TextMeshProUGUI _levelNameText;
+    [SerializeField] TextMeshProUGUI _endScreenMessage;
+    [SerializeField] TextMeshProUGUI _turnsCleared;
     [SerializeField] List<UIStarHolder> _starHolders = new List<UIStarHolder>();
     [SerializeField] List<TextMeshProUGUI> _turnTexts = new List<TextMeshProUGUI>();
-    [SerializeField] TextMeshProUGUI _turnsCleared;
     [Header("Horizontal Fill")]
     [SerializeField] float _fillSpeed = 5f;
     [SerializeField] Image _horizontalBarFill;
@@ -37,7 +39,6 @@ public class UIEndScreen : MonoBehaviour
         while(turnCountValue > _turnCounterSO.TurnCount)
         {
             turnCountValue -= Time.deltaTime * _fillSpeed;
-            Debug.Log(turnCountValue);
             if (turnCountValue < _ratingSystemSO.RatingTurnCounts[starValueIndex])
             {
                 _starHolders[starValueIndex].PlayPopOutAnimation();
@@ -51,16 +52,16 @@ public class UIEndScreen : MonoBehaviour
     private void UpdateWinUI()
     {
         _levelNameText.text = _turnCounterSO.LevelName;
+        _endScreenMessage.text = _turnCounterSO.EndScreenMessage;
         _turnsCleared.text = "Turns: "+_turnCounterSO.TurnCount;
 
+        _animator.SetTrigger("Pop");
+
+        //update horizontal bar turn requirement info 
         for (int i = 0; i < _ratingSystemSO.RatingTurnCounts.Count; i++)
         {
             _turnTexts[i].text = _ratingSystemSO.RatingTurnCounts[i].ToString("00");
         }
 
-
-        //_starHolders[0].sprite = (_turnCounterSO.TurnCount <= _ratingSystemSO.oneStar)   ? _starFull : _starEmpty;
-        //_starHolders[1].sprite = (_turnCounterSO.TurnCount <= _ratingSystemSO.twoStar)   ? _starFull : _starEmpty;
-        //_starHolders[2].sprite = (_turnCounterSO.TurnCount <= _ratingSystemSO.threeStar) ? _starFull : _starEmpty;
     }
 }

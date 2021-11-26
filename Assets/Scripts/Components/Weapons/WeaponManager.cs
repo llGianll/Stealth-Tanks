@@ -76,7 +76,10 @@ public class WeaponManager : MonoBehaviour
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(false);
+        }
 
+        foreach (Transform child in transform)
+        {
             if (child.GetComponent<Weapon>() == weapon)
             {
                 MouseTarget.Instance.TargetMode = weapon.gameObject.transform.GetComponentInChildren<ITargeting>();

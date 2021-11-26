@@ -47,8 +47,10 @@ public class SingleTileTargeting : Targeting, ITargeting
 
     private void Targeting()
     {
-        if(MouseTarget.Instance.HitCollider != null)
+        if(MouseTarget.Instance.HitCollider != null) 
+        {
             AddTarget(MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>());
+        }
     }
 
     public void AddTarget(GridTileProcessor target)

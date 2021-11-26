@@ -877,6 +877,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3736737096807373716, guid: 70ff6d78830e0d544913c2f4b8ca0bc6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3736737096807373716, guid: 70ff6d78830e0d544913c2f4b8ca0bc6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3736737096807373716, guid: 70ff6d78830e0d544913c2f4b8ca0bc6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3736737096807373716, guid: 70ff6d78830e0d544913c2f4b8ca0bc6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.185
+      objectReference: {fileID: 0}
     - target: {fileID: 5531031020530699896, guid: 70ff6d78830e0d544913c2f4b8ca0bc6, type: 3}
       propertyPath: _maxFresnel
       value: 3

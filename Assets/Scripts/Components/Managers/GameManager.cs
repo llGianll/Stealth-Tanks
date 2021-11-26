@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         //Show End Game UI with button, pause the game 
         if(_currentEnemyCount <= 0)
         {
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             OnGameEnd(true);
         }
     }
@@ -84,8 +84,14 @@ public class GameManager : MonoBehaviour
 
     public void FailedLevel()
     {
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         OnGameEnd(false);
+    }
+
+    [ContextMenu("Test Win")]
+    public void TestWin()
+    {
+        OnGameEnd(true);
     }
 
 }

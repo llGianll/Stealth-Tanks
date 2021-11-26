@@ -21,7 +21,7 @@ public class UIEndScreen : MonoBehaviour
 
     private void Start()
     {
-        _turnCounterSO.TurnCount = 7;
+        //_turnCounterSO.TurnCount = 7;
         UpdateWinUI();
         StartCoroutine(UIProgression());
     }

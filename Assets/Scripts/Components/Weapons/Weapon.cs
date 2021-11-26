@@ -34,8 +34,11 @@ public class Weapon : MonoBehaviour
     {
         if(MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>() != null)
         {
-            if(EnergyManager.Instance.DecreaseEnergy(_energyCost))
+            if (EnergyManager.Instance.DecreaseEnergy(_energyCost))
+            {
+                CameraShake.Instance.Shake();
                 _targetMode.ClickTarget();
+            }
         }
     }
 }

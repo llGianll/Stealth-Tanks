@@ -32,10 +32,10 @@ public class ExplosionRadius : MonoBehaviour
 
     public void Explode()
     {
-        //_hitColliders = (Physics.OverlapBox(transform.position, transform.localScale/2, transform.rotation, _tileLayerMask)).ToList();
-        //foreach (var item in _hitColliders)
-        //{
-        //    item.GetComponent<GridTileProcessor>().Clicked();
-        //}
+        _hitColliders = (Physics.OverlapBox(transform.position, transform.localScale / 2, transform.rotation, _tileLayerMask)).ToList();
+        foreach (var item in _hitColliders)
+        {
+            item.GetComponent<GridTileProcessor>().Clicked();
+        }
     }
 }

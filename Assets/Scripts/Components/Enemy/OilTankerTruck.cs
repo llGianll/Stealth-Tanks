@@ -14,7 +14,7 @@ public class OilTankerTruck : EnemyUnit
     void Explode()
     {
         _explosionRadiusGO.SetActive(true);
-        //_explosionRadiusGO.GetComponent<ExplosionRadius>().Explode();
+        _explosionRadiusGO.GetComponent<ExplosionRadius>().Explode();
         //_enemyModel.SetActive(false);
         //_explosionRadiusGO.SetActive(false);
         //gameObject.SetActive(false);

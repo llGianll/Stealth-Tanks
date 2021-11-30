@@ -6,7 +6,6 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] float _projectileSpeed = 2f;
     Rigidbody _rb;
-    //protected bool _isMoving = false;
     GridTileProcessor _target;
 
     private void Awake()
@@ -24,14 +23,19 @@ public class Projectile : MonoBehaviour
         if (other.GetComponent<GridTileProcessor>())
         {
             CameraShake.Instance.Shake();
-            _target.Clicked();
+            other.GetComponent<GridTileProcessor>().Clicked();
             gameObject.SetActive(false);
         }
     }
 
     public void Move(GridTileProcessor target)
     {
-        _target = target;
+        //_target = target;
         _rb.velocity = transform.forward * _projectileSpeed;
+    }
+
+    public void MoveWithGravity(GridTileProcessor target)
+    {
+        //_target = target;
     }
 }

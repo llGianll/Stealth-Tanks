@@ -27,6 +27,8 @@ public class LineBomber : Weapon
                 GameObject bomber = PooledObjectManager.Instance.GetPooledObject(_bomberID);
                 bomber.transform.position = new Vector3(_startPoint.x, _ySpawnOffset, _startPoint.z);
                 bomber.transform.rotation = Quaternion.LookRotation(_moveDirection, Vector3.up);
+                Debug.Log(_targetMode.TargetTiles.Count);
+                bomber.GetComponent<StealthBomber>().InitializeTargets(_targetMode.TargetTiles, _isHorizontal, _projectileID);
                 bomber.SetActive(true);
                 bomber.GetComponent<StealthBomber>().SetVelocity((_endpoint - _startPoint).normalized * _bomberFlightSpeed);
 

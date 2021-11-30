@@ -53,7 +53,6 @@ public class LineTargeting : Targeting, ITargeting
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            Debug.Log("SWITCH ORIENTATION");
             SwitchTargetingOrientation();
         }
     }

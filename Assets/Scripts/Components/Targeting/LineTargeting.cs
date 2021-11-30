@@ -9,7 +9,11 @@ public class LineTargeting : Targeting, ITargeting
     TargetingOrientation _targetingOrientation;
 
     List<GridTileProcessor> _targets = new List<GridTileProcessor>();
-    
+
+    public GridTileProcessor TargetTile { get; } //not needed here 
+
+    public List<GridTileProcessor> TargetTiles => _targets;
+
     private void Start()
     {
         _targetingOrientation = TargetingOrientation.Horizontal;
@@ -98,5 +102,6 @@ public class LineTargeting : Targeting, ITargeting
 
         _targets.Clear();
     }
+
 }
 

@@ -75,7 +75,10 @@ public class AdjacentTilesChecker : MonoBehaviour
     {
         //[Refactor] duplication of logic 
         if (adjacentChecker.Left == null)
+        {
+
             return null;
+        }
 
         MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Left);
 
@@ -87,7 +90,10 @@ public class AdjacentTilesChecker : MonoBehaviour
     public AdjacentTilesChecker CheckRight(AdjacentTilesChecker adjacentChecker)
     {
         if (adjacentChecker.Right == null)
+        {
+
             return null;
+        }
 
         MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Right);
 
@@ -120,20 +126,20 @@ public class AdjacentTilesChecker : MonoBehaviour
         return CheckDown(adjacentChecker.Down.AdjacentChecker);
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.blue;
 
-        if (_left != null)
-            Gizmos.DrawWireCube(transform.position + -Vector3.forward + new Vector3(0, 0.25f, 0), Vector3.one);
+    //    if (_left != null)
+    //        Gizmos.DrawWireCube(transform.position + -Vector3.forward + new Vector3(0, 0.25f, 0), Vector3.one);
 
-        if (_right != null)
-            Gizmos.DrawWireCube(transform.position + Vector3.forward + new Vector3(0, 0.25f, 0), Vector3.one);
+    //    if (_right != null)
+    //        Gizmos.DrawWireCube(transform.position + Vector3.forward + new Vector3(0, 0.25f, 0), Vector3.one);
 
-        if (_up != null)
-            Gizmos.DrawWireCube(transform.position + -Vector3.right + new Vector3(0, 0.25f, 0), Vector3.one);
+    //    if (_up != null)
+    //        Gizmos.DrawWireCube(transform.position + -Vector3.right + new Vector3(0, 0.25f, 0), Vector3.one);
 
-        if (_down != null)
-            Gizmos.DrawWireCube(transform.position + Vector3.right + new Vector3(0, 0.25f, 0), Vector3.one);
-    }
+    //    if (_down != null)
+    //        Gizmos.DrawWireCube(transform.position + Vector3.right + new Vector3(0, 0.25f, 0), Vector3.one);
+    //}
 }

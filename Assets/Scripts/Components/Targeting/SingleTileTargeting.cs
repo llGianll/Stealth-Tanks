@@ -7,6 +7,9 @@ public class SingleTileTargeting : Targeting, ITargeting
 {
     GridTileProcessor _targetTile;
 
+    public GridTileProcessor TargetTile => _targetTile;
+    public List<GridTileProcessor> TargetTiles { get; } //not needed here 
+
     private void OnEnable()
     {
         if (MouseTarget.Instance != null)
@@ -38,11 +41,6 @@ public class SingleTileTargeting : Targeting, ITargeting
     {
         if (_targetTile != null)
             _targetTile.Clicked();
-    }
-
-    private void Update()
-    {
-
     }
 
     private void Targeting()

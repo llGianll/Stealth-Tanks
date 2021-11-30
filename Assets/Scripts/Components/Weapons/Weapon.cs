@@ -8,7 +8,8 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] protected int _energyCost = 2;
     [SerializeField] Sprite _weaponIcon;
-    protected ITargeting _targetMode;
+    [SerializeField] protected string _projectileID; //[Refactor] get objects from object pool without relying on ID 
+    protected ITargeting _targetMode; 
 
     public int EnergyCost => _energyCost;
     public Sprite Icon => _weaponIcon;
@@ -30,15 +31,8 @@ public class Weapon : MonoBehaviour
             MouseTarget.Instance.OnClicked -= UseWeapon;
     }
 
-    private void UseWeapon()
+    protected virtual void UseWeapon()
     {
-        if(MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>() != null)
-        {
-            if (EnergyManager.Instance.DecreaseEnergy(_energyCost))
-            {
-                CameraShake.Instance.Shake();
-                _targetMode.ClickTarget();
-            }
-        }
+
     }
 }

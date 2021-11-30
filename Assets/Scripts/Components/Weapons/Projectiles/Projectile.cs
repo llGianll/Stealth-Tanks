@@ -5,8 +5,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float _projectileSpeed = 2f;
+    [Header("Object Pool Reference")]
+    [SerializeField] string _explosionID;
+
     Rigidbody _rb;
     GridTileProcessor _target;
+
 
     private void Awake()
     {
@@ -24,6 +28,9 @@ public class Projectile : MonoBehaviour
         {
             CameraShake.Instance.Shake();
             other.GetComponent<GridTileProcessor>().Clicked();
+            GameObject explosion = PooledObjectManager.Instance.GetPooledObject(_explosionID);
+            explosion.transform.position = transform.position;
+            explosion.SetActive(true);
             gameObject.SetActive(false);
         }
     }

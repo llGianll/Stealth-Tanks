@@ -4880,6 +4880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSpeed: 12
+  _explosionID: Small_Explosion
 --- !u!1 &155060
 GameObject:
   m_ObjectHideFlags: 0

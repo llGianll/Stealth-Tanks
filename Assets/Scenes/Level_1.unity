@@ -2138,7 +2138,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1347800379}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &285459861
 GameObject:
@@ -7359,6 +7359,11 @@ MonoBehaviour:
     parent: {fileID: 1453197814}
     amountToPool: 11
     shouldExpand: 1
+  - id: Small_Explosion
+    prefab: {fileID: 100006, guid: 2e7e92bc7175b744ea40878dedfa79e4, type: 3}
+    parent: {fileID: 1475829108}
+    amountToPool: 11
+    shouldExpand: 1
   - id: Despawner
     prefab: {fileID: 7148201008372352883, guid: 4d641ad826e6d19428ec8bf29f65bb74, type: 3}
     parent: {fileID: 281449307}
@@ -7379,6 +7384,7 @@ Transform:
   - {fileID: 97812367}
   - {fileID: 1619014568}
   - {fileID: 1453197814}
+  - {fileID: 1475829108}
   - {fileID: 281449307}
   m_Father: {fileID: 0}
   m_RootOrder: 17
@@ -7994,6 +8000,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63070eae86206dd4d88a77681745a090, type: 3}
+--- !u!1 &1475829107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1475829108}
+  m_Layer: 0
+  m_Name: Small Explosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1475829108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475829107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1347800379}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1478570528
 PrefabInstance:
   m_ObjectHideFlags: 0

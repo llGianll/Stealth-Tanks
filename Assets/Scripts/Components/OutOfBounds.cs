@@ -9,6 +9,10 @@ public class OutOfBounds : MonoBehaviour
         IDeath death = other.GetComponent<IDeath>();
         if (death != null)
             death.Death();
+        else
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -16,5 +20,9 @@ public class OutOfBounds : MonoBehaviour
         IDeath death = other.gameObject.GetComponent<IDeath>();
         if (death != null)
             death.Death();
+        else
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 }

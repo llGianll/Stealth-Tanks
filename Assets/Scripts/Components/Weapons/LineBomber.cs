@@ -5,24 +5,56 @@ using UnityEngine;
 
 public class LineBomber : Weapon
 {
-    Vector3 _startPoint, _endpoint;
-    bool _isHorizontal;
-
+    [Header("Subclass Variables - Bomber")]
+    [SerializeField] string _bomberID;
+    [SerializeField] float _ySpawnOffset = 3f;
     [SerializeField] float _spawnAndEndOffset = 5f;
+    [SerializeField] float _bomberFlightSpeed = 10f;
+
+    Vector3 _startPoint, _endpoint;
+    Vector3 _moveDirection;
+    bool _isHorizontal;
+    protected override void UseWeapon()
+    {
+        base.UseWeapon();
+
+        GetStartAndEndPoint();
+
+        if (MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>() != null)
+        {
+            if (EnergyManager.Instance.DecreaseEnergy(_energyCost))
+            {
+                GameObject bomber = PooledObjectManager.Instance.GetPooledObject(_bomberID);
+                bomber.transform.position = new Vector3(_startPoint.x, _ySpawnOffset, _startPoint.z);
+                bomber.transform.rotation = Quaternion.LookRotation(_moveDirection, Vector3.up);
+                bomber.SetActive(true);
+                bomber.GetComponent<StealthBomber>().SetVelocity((_endpoint - _startPoint).normalized * _bomberFlightSpeed);
+
+
+                GameObject despawner = PooledObjectManager.Instance.GetPooledObject("Despawner");
+                despawner.transform.position = new Vector3(_endpoint.x, _ySpawnOffset, _endpoint.z);
+                despawner.SetActive(true);
+            }
+        }
+    }
+
     private void GetStartAndEndPoint()
     {
+        if (_targetMode.TargetTiles.Count <= 0)
+            return;
+
         Vector3 firstTile = _targetMode.TargetTiles[0].transform.position;
         Vector3 nextTile = _targetMode.TargetTiles[1].transform.position;
 
         CheckIfHorizontal(firstTile, nextTile);
 
         //get unit vector of the position of the first two tiles on the list 
-        Vector3 tileDirecton = (firstTile - nextTile).normalized;
+        _moveDirection = (firstTile - nextTile).normalized;
         Vector3 differenceToOrigin = OriginDifference(firstTile);
-        tileDirecton = FlipDirection(tileDirecton);
+        _moveDirection = FlipDirection(_moveDirection);
 
         _startPoint = StartPointWithOffset(differenceToOrigin);
-        _endpoint = _startPoint + (tileDirecton * (9+_spawnAndEndOffset*2)) ; //[refactor] use grid size data later to remove magic number 9
+        _endpoint = _startPoint + (_moveDirection * (9+_spawnAndEndOffset*2)) ; //[refactor] use grid size data later to remove magic number 9
     }
 
     #region Calculating Start and End Point Helper Functions

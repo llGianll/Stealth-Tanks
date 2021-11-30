@@ -23,19 +23,20 @@ public class UIEndScreen : MonoBehaviour
 
     private void Start()
     {
-        //_turnCounterSO.TurnCount = 7;
+        //_turnCounterSO.TurnCount = 11;
         UpdateWinUI();
         StartCoroutine(UIProgression());
+        _horizontalBarFill.fillAmount = 0f;
     }
 
     private IEnumerator UIProgression()
     {
-        float turnCountValue = _ratingSystemSO.RatingTurnCounts[0] + 0.5f; //to be decreased based on percentage
+        float turnCountValue = _ratingSystemSO.RatingTurnCounts[0] + 1f; //to be decreased based on percentage, 1f acts as offset for both the loop and the bar fill
         float maxRatingValue = _ratingSystemSO.RatingTurnCounts[_ratingSystemSO.RatingTurnCounts.Count - 1];
         float minRatingValue = _ratingSystemSO.RatingTurnCounts[0];
+        float ratingDifference = minRatingValue - maxRatingValue;
 
         int starValueIndex = 0;
-        Debug.Log(turnCountValue);
         while(turnCountValue > _turnCounterSO.TurnCount)
         {
             turnCountValue -= Time.deltaTime * _fillSpeed;
@@ -44,6 +45,10 @@ public class UIEndScreen : MonoBehaviour
                 _starHolders[starValueIndex].PlayPopOutAnimation();
                 starValueIndex++;
             }
+        
+            float percent = 1- ((turnCountValue - maxRatingValue) / ratingDifference);
+            _horizontalBarFill.fillAmount = percent;
+            //Debug.Log(percent);
 
             yield return null;
         }

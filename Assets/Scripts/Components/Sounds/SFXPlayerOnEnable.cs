@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SFXPlayer : MonoBehaviour
+public class SFXPlayerOnEnable : MonoBehaviour
 {
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioEventSO _sfx;

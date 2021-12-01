@@ -7,6 +7,10 @@ public class Projectile : MonoBehaviour
     [SerializeField] float _projectileSpeed = 2f;
     [Header("Object Pool Reference")]
     [SerializeField] string _explosionID;
+    [Header("Audio")]
+    [SerializeField] AudioSource _audioSource;
+    //[SerializeField] AudioEventSO _projectileHitSFX;
+
 
     Rigidbody _rb;
     GridTileProcessor _target;

@@ -7,6 +7,8 @@ public enum SpawnScreenSide { Top, Bottom }
 
 public class LineBomber : Weapon
 {
+    [Header("Scriptable Object References")]
+    [SerializeField] EnergyManager _energyManager;
 
     [Header("Subclass Variables - Bomber Spawn")]
     [SerializeField] string _bomberID;
@@ -29,7 +31,7 @@ public class LineBomber : Weapon
 
         if (MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>() != null)
         {
-            if (EnergyManager.Instance.DecreaseEnergy(_energyCost))
+            if (_energyManager.DecreaseEnergy(_energyCost))
             {
                 GameObject bomber = PooledObjectManager.Instance.GetPooledObject(_bomberID);
                 bomber.transform.position = new Vector3(_startPoint.x, _ySpawnOffset, _startPoint.z);

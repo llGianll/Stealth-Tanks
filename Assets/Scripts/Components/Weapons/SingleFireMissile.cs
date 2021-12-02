@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SingleFireMissile : Weapon
 {
+    [Header("Scriptable Object References")]
+    [SerializeField] EnergyManager _energyManager;
+
     [Header("Subclass variables")]
     [SerializeField] float _ySpawnOffset = 10f;
     protected override void UseWeapon()
@@ -11,7 +14,7 @@ public class SingleFireMissile : Weapon
         base.UseWeapon();
         if (MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>() != null)
         {
-            if (EnergyManager.Instance.DecreaseEnergy(_energyCost))
+            if (_energyManager.DecreaseEnergy(_energyCost))
             {
                 GameObject projectile = PooledObjectManager.Instance.GetPooledObject(_projectileID);
                 projectile.transform.position = _targetMode.TargetTile.gameObject.transform.position + new Vector3(0, _ySpawnOffset, 0);

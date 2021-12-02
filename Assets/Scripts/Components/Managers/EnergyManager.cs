@@ -1,27 +1,28 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyManager : MonoBehaviour
+[CreateAssetMenu(menuName = "Managers/EnergyManager", fileName = "EnergyManager")]
+public class EnergyManager : ScriptableObject
 {
     [SerializeField] MaxEnergySO _maxEnergySO;
-
     int _currentEnergy;
-    public static EnergyManager Instance;
-
-    public Action<int, int> OnCurrentEnergyChange = delegate { };
-    private void Awake()
+    
+    //[TODO] Create a custom editor that can display properties so that I can modify values in the inspector and execute an event whenever the value is changed.
+    public int CurrentEnergy 
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        get { return _currentEnergy; }
+        set 
+        { 
+            _currentEnergy = value;
+            OnCurrentEnergyChange(_currentEnergy, _maxEnergySO.EnergyPerTurn);
+        } 
     }
 
-    private void Start()
+    public Action<int, int> OnCurrentEnergyChange = delegate { };
+
+    private void OnEnable()
     {
-        ReplenishEnergyToFull();
+        //ReplenishEnergyToFull();
     }
 
     public bool DecreaseEnergy(int energyCost)

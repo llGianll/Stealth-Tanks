@@ -6,6 +6,10 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance;
+    [Header("Scriptable Object References")]
+    [SerializeField] EnergyManager _energyManager;
+    
+    [Header("Class Fields")]
     [SerializeField] TurnCounterSO _turnCounter;
 
     public Action<int> OnCurrentTurnChange = delegate { };
@@ -23,11 +27,12 @@ public class TurnManager : MonoBehaviour
     {
         _turnCounter.TurnCount = 1;
         OnCurrentTurnChange(_turnCounter.TurnCount);
+        _energyManager.ReplenishEnergyToFull();
     }
 
     public void EndTurn()
     {
-        EnergyManager.Instance.ReplenishEnergyToFull();
+        _energyManager.ReplenishEnergyToFull();
         _turnCounter.TurnCount++;
         OnCurrentTurnChange(_turnCounter.TurnCount);
         if(_turnCounter.TurnCount > _turnCounter.TurnsToClear)

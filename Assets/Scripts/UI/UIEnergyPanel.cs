@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class UIEnergyPanel : MonoBehaviour
 {
+    [Header("Scriptable Object References")]
+    [SerializeField] EnergyManager _energyManager;
+    [Header("UI References")]
     [SerializeField] TextMeshProUGUI _energyText;
 
-    private void Start()
+    private void OnEnable()
     {
-        EnergyManager.Instance.OnCurrentEnergyChange += UpdateEnergyText;
+       _energyManager.OnCurrentEnergyChange += UpdateEnergyText;
+
     }
 
     private void OnDisable()
     {
-        EnergyManager.Instance.OnCurrentEnergyChange += UpdateEnergyText;
+        _energyManager.OnCurrentEnergyChange -= UpdateEnergyText;
     }
 
     private void UpdateEnergyText(int currentEnergy, int maxEnergy)

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SFX_Cheering
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 50ee87a4622fc4d43b13405aa25be25c, type: 3}
-  _volume: 0.75
+  _volume: 0.5
   _pitch: 1

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SFX_BomberFlyBy
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: cbca65ea082bed04db7d4ea70b6ba569, type: 3}
-  _volume: 1
+  _volume: 0.5
   _pitch: 1

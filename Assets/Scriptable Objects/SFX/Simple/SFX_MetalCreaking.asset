@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SFX_MetalCreaking
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 94b83977921b63e439486375597ba658, type: 3}
-  _volume: 1.3
+  _volume: 1
   _pitch: 1

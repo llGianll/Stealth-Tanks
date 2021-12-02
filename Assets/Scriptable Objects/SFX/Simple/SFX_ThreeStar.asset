@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SFX_ThreeStar
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: b3f210289cf8f4473a7e2fcf62618a29, type: 3}
-  _volume: 1.1
+  _volume: 0.8
   _pitch: 4

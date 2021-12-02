@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SFX_SwitchWeapons
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 31ee193d660aacc438359911da6bbc05, type: 3}
-  _volume: 0.75
+  _volume: 0.05
   _pitch: 1

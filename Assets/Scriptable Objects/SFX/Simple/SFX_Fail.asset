@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SFX_Fail
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 1d0267ce89193de4ba36f7c3972f4ee0, type: 3}
-  _volume: 1.25
+  _volume: 0.75
   _pitch: 1

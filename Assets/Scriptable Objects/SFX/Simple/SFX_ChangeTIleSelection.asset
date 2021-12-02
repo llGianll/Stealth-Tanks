@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SFX_ChangeTIleSelection
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 15f36c4cd0d98294a850234bd0cc0620, type: 3}
-  _volume: 0.2
+  _volume: 0.15
   _pitch: 0.8

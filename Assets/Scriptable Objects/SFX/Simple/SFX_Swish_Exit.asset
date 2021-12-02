@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SFX_Swish_Exit
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 7fac328f51c64ed429667508971929ce, type: 3}
-  _volume: 0.5
+  _volume: 0.3
   _pitch: 0.75

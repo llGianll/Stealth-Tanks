@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SFX_GroundCrack
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 13c6f431b0287fa4c85a0f3738abc328, type: 3}
-  _volume: 0.8
+  _volume: 0.5
   _pitch: 0.6

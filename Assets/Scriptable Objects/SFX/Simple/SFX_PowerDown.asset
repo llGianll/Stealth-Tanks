@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SFX_PowerDown
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: d4f653705ccfeb5449b90b4fe8da524f, type: 3}
-  _volume: 0.4
+  _volume: 0.5
   _pitch: 1.25

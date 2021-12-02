@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnManager : MonoBehaviour
+[CreateAssetMenu(menuName = "Managers/TurnManager", fileName = "TurnManager")]
+public class TurnManager : ScriptableObject
 {
-    public static TurnManager Instance;
     [Header("Scriptable Object References")]
     [SerializeField] EnergyManager _energyManager;
     
@@ -13,17 +11,15 @@ public class TurnManager : MonoBehaviour
     [SerializeField] TurnCounterSO _turnCounter;
 
     public Action<int> OnCurrentTurnChange = delegate { };
-    public Action<int> OnLose = delegate { };
 
-    private void Awake()
+    private void OnEnable()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        _turnCounter.TurnCount = 1;
+        OnCurrentTurnChange(_turnCounter.TurnCount);
+        _energyManager.ReplenishEnergyToFull();
     }
 
-    private void Start()
+    public void Initialize()
     {
         _turnCounter.TurnCount = 1;
         OnCurrentTurnChange(_turnCounter.TurnCount);
@@ -35,9 +31,11 @@ public class TurnManager : MonoBehaviour
         _energyManager.ReplenishEnergyToFull();
         _turnCounter.TurnCount++;
         OnCurrentTurnChange(_turnCounter.TurnCount);
+
         if(_turnCounter.TurnCount > _turnCounter.TurnsToClear)
         {
-            GameManager.Instance.FailedLevel();
+            if(GameManager.Instance != null)
+                GameManager.Instance.FailedLevel();
         }
     }
 }

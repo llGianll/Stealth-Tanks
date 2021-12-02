@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f2b89a99513ad443aa029f88e5b68de, type: 3}
-  m_Name: EnergyManager
+  m_Script: {fileID: 11500000, guid: 864f97b4c12d98341828115d2cb3dc1e, type: 3}
+  m_Name: TurnManager
   m_EditorClassIdentifier: 
-  _maxEnergySO: {fileID: 11400000, guid: c06c54bb6d837394ca52ff1b1363b029, type: 2}
-  _currentEnergy: 20
+  _energyManager: {fileID: 11400000, guid: 52f81bd2a3f6c19478fdbac17b89463c, type: 2}
+  _turnCounter: {fileID: 11400000, guid: 6f3d391f5d084bb46a9bf62d7f9a4e77, type: 2}

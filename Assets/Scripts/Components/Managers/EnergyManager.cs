@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnergyManager : ScriptableObject
 {
     [SerializeField] MaxEnergySO _maxEnergySO;
-    int _currentEnergy;
+    [SerializeField] int _currentEnergy;
     
     //[TODO] Create a custom editor that can display properties so that I can modify values in the inspector and execute an event whenever the value is changed.
     public int CurrentEnergy 
@@ -20,10 +20,6 @@ public class EnergyManager : ScriptableObject
 
     public Action<int, int> OnCurrentEnergyChange = delegate { };
 
-    private void OnEnable()
-    {
-        //ReplenishEnergyToFull();
-    }
 
     public bool DecreaseEnergy(int energyCost)
     {
@@ -45,6 +41,12 @@ public class EnergyManager : ScriptableObject
     public void ReplenishEnergyToFull()
     {
         _currentEnergy = _maxEnergySO.EnergyPerTurn;
+        OnCurrentEnergyChange(_currentEnergy, _maxEnergySO.EnergyPerTurn);
+    }
+
+    private void OnValidate()
+    {
+        _currentEnergy = Mathf.Clamp(_currentEnergy, 0, _maxEnergySO.EnergyPerTurn);
         OnCurrentEnergyChange(_currentEnergy, _maxEnergySO.EnergyPerTurn);
     }
 }

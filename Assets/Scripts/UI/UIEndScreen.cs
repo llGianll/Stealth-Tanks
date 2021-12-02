@@ -21,10 +21,17 @@ public class UIEndScreen : MonoBehaviour
     [SerializeField] float _fillSpeed = 5f;
     [SerializeField] Image _horizontalBarFill;
     [Header("Audio")]
-    [SerializeField] AudioSource _audioSource;
+    [SerializeField] BGMPlayer _bgmPlayer;
+    [SerializeField] AudioEventSO _winBGM;
+    [SerializeField] AudioEventSO _loseBGM;
 
     private void Start()
     {
+        if (_turnCounterSO.TurnCount <= _turnCounterSO.TurnsToClear)
+            _bgmPlayer.SetBGM(_winBGM);
+        else
+            _bgmPlayer.SetBGM(_loseBGM);
+
         UpdateWinUI();
         StartCoroutine(UIProgression());
         _horizontalBarFill.fillAmount = 0f;

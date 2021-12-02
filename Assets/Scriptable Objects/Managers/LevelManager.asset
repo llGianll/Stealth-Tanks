@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6533019c582a374db68df89122b9534, type: 3}
-  m_Name: EndScreenLoseBGM
+  m_Script: {fileID: 11500000, guid: 5ecc76683c8beaf458747ad327de4081, type: 3}
+  m_Name: LevelManager
   m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 2e03ea08721f4428bad8a4aca5b4d869, type: 3}
-  _volume: 0.35
-  _pitch: 1

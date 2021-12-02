@@ -3,18 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+[CreateAssetMenu(menuName = "Managers/LevelManager", fileName = "LevelManager")]
+public class LevelManager : ScriptableObject
 {
-    public static LevelManager Instance;
-
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
-
     public void WinScreen()
     {
         SceneManager.LoadScene("WinScene");

@@ -6,8 +6,6 @@ public class OutOfBounds : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name + " fell.");
-
         IDeath death = other.GetComponent<IDeath>();
         if (death != null)
         {
@@ -22,8 +20,6 @@ public class OutOfBounds : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject.name + " fell.");
-
         IDeath death = other.gameObject.GetComponent<IDeath>();
         if (death != null)
         {

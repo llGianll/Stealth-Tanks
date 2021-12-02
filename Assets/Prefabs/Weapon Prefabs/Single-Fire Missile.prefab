@@ -47,6 +47,7 @@ MonoBehaviour:
   _energyCost: 2
   _weaponIcon: {fileID: 21300000, guid: 1f33af99eca7f33489ea6951d9dde8c3, type: 3}
   _projectileID: Missile
+  _energyManager: {fileID: 11400000, guid: 52f81bd2a3f6c19478fdbac17b89463c, type: 2}
   _ySpawnOffset: 7
 --- !u!1001 &8343103724744570268
 PrefabInstance:

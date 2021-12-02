@@ -9,6 +9,7 @@ public class LineBomber : Weapon
 {
     [Header("Scriptable Object References")]
     [SerializeField] EnergyManager _energyManager;
+    [SerializeField] GridSizeSO _gridSizeSO;
 
     [Header("Subclass Variables - Bomber Spawn")]
     [SerializeField] string _bomberID;
@@ -64,9 +65,17 @@ public class LineBomber : Weapon
         _moveDirection = FlipDirection(_moveDirection);
 
         _startPoint = StartPointWithOffset(differenceToOrigin);
-        _endpoint = _startPoint + (_moveDirection * (9+_spawnAndEndOffset*2)) ; //[refactor] use grid size data later to remove magic number 9
+        _endpoint = _startPoint + (_moveDirection * (GridSizeLine() +_spawnAndEndOffset*2));
 
         ModifySpawnLocation(_spawnSide);
+    }
+
+    private float GridSizeLine()
+    {
+        if (_isHorizontal)
+            return _gridSizeSO.ZCount;
+        else
+            return _gridSizeSO.XCount;
     }
 
 
@@ -151,8 +160,4 @@ public class LineBomber : Weapon
     } 
     #endregion
 
-    private void Update()
-    {
-        GetStartAndEndPoint();
-    }
 }

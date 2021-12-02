@@ -44,7 +44,6 @@ public class WeaponManager : MonoBehaviour
     private void Update()
     {
         #region Commented Number Keys Input 
-        //[Refactor]temporary hotkey inputs 
         //if (Input.GetKeyDown(KeyCode.Alpha1))
         //    SwitchWeapon(_weapons[0]);
         //else if (Input.GetKeyDown(KeyCode.Alpha2))

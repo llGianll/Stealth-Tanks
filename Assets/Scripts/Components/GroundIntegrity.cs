@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class GroundIntegrity : MonoBehaviour, IHealth, IDeath
 {
+    [Header("Ground Crack")]
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioEventSO _sfx_Crack;
+
     float _maxHealth;
     float _damagePerHit = 1;
     
@@ -75,6 +79,7 @@ public class GroundIntegrity : MonoBehaviour, IHealth, IDeath
 
     private void DropGroundTile()
     {
+        _sfx_Crack.Play(_audioSource);
         _rb.useGravity = true;
         _rb.isKinematic = false;
     }

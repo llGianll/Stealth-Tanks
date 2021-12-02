@@ -16,6 +16,7 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth, IDeath
     [Header("Audio")]
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioEventSO _sfx_Hit;
+    [SerializeField] AudioEventSO _sfx_MetalCreak;
 
     public string ID { get; set; }
 
@@ -128,6 +129,7 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth, IDeath
     {
         GameManager.Instance.DecreaseEnemyCount(ID);
         _isDead = true;
+        _sfx_MetalCreak.Play(_audioSource);
         OnDeath(ID);
     }
 }

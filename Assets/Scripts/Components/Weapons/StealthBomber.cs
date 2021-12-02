@@ -73,7 +73,7 @@ public class StealthBomber : MonoBehaviour
 
     }
 
-    public void InitializeTargets(List<GridTileProcessor> targets, bool isHorizontal, string bombID)
+    public void InitializeTargets(List<GridTileProcessor> targets, bool isHorizontal, string bombID, SpawnScreenSide spawnSide)
     {
         _targetPositions.Clear();
         _currentTargetIndex = 0;
@@ -86,9 +86,23 @@ public class StealthBomber : MonoBehaviour
         _bombID = bombID;
 
         if (isHorizontal)
-            _targetPositions = _targetPositions.OrderBy(x => x.z).ToList();
+        {
+            if(spawnSide == SpawnScreenSide.Bottom)
+                _targetPositions = _targetPositions.OrderBy(x => x.z).ToList();
+            else 
+                _targetPositions = _targetPositions.OrderByDescending(x => x.z).ToList(); 
+
+
+        }
         else
-            _targetPositions = _targetPositions.OrderBy(x => x.x).ToList();
+        {
+            if(spawnSide == SpawnScreenSide.Top)
+                _targetPositions = _targetPositions.OrderBy(x => x.x).ToList();
+            else 
+                _targetPositions = _targetPositions.OrderByDescending(x => x.x).ToList();
+
+
+        }
 
         _isInitialized = true;
 

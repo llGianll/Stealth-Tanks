@@ -11,7 +11,8 @@ public class WeaponManager : MonoBehaviour
     
     List<Weapon> _weapons = new List<Weapon>();
     int _activeWeaponIndex;
-    bool _allowWeaponSwitch;
+    bool _allowWeaponSwitch; //don't allow weapon switch when not focused on the game 
+    bool _isInitialized = false; //sound flag for sfx to not play at the very start of the level when weapon is initialized at Start()
 
     public Action<Sprite, int> OnSwitchWeapon = delegate { };
 
@@ -23,7 +24,13 @@ public class WeaponManager : MonoBehaviour
         if (_weapons.Count <= 0)
             return;
 
+        InitializeActiveWeapon();
+    }
+
+    private void InitializeActiveWeapon()
+    {
         SwitchWeapon(_weapons[0]);
+        _isInitialized = true;
     }
 
     private void InitializeWeaponry()
@@ -81,7 +88,9 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
-        _sfx_WeaponSwitch.Play(_audioSource);
+        if(_isInitialized)
+            _sfx_WeaponSwitch.Play(_audioSource);
+
         OnSwitchWeapon(weapon.Icon, weapon.EnergyCost);
     }
 

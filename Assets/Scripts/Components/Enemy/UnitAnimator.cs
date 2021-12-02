@@ -7,6 +7,7 @@ public class UnitAnimator : MonoBehaviour
 {
     [SerializeField] EnemyUnit _enemyUnit;
     [SerializeField] GameObject _healthBarAnchor;
+    [SerializeField] AudioSource _parentAudioSource;
     Animator _animator;
 
     private void Awake()
@@ -31,7 +32,13 @@ public class UnitAnimator : MonoBehaviour
 
     public void HideHealthBar()
     {
+        StopCreakingSound();
         if(_healthBarAnchor != null)
             _healthBarAnchor.SetActive(false);
+    }
+
+    private void StopCreakingSound()
+    {
+        _parentAudioSource.Stop();
     }
 }

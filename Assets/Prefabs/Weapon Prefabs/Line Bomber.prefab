@@ -50,6 +50,7 @@ MonoBehaviour:
   _bomberID: Bomber
   _ySpawnOffset: 4.5
   _spawnAndEndOffset: 6
+  _spawnSide: 1
   _bomberFlightSpeed: 10
 --- !u!1001 &1417412673971666793
 PrefabInstance:

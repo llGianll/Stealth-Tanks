@@ -24,7 +24,7 @@ public class AudioEventEditor : Editor
     {
         DrawDefaultInspector(); //[Notes] implement the GUI that the inspector usually presents, then code below will add better GUI on top of it
 
-        EditorGUI.BeginDisabledGroup(serializedObject.isEditingMultipleObjects); //not sure of the purpose of this 
+        EditorGUI.BeginDisabledGroup(serializedObject.isEditingMultipleObjects); //not sure of the purpose of this, research more on this later
 
         EditorGUILayout.Space();
         if (GUILayout.Button("Preview"))

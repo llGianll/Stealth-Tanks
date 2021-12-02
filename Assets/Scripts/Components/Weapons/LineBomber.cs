@@ -3,17 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpawnScreenSide { Top, Bottom }
+
 public class LineBomber : Weapon
 {
-    [Header("Subclass Variables - Bomber")]
+
+    [Header("Subclass Variables - Bomber Spawn")]
     [SerializeField] string _bomberID;
     [SerializeField] float _ySpawnOffset = 3f;
     [SerializeField] float _spawnAndEndOffset = 5f;
+    [SerializeField] SpawnScreenSide _spawnSide;
+
+    [Header("Subclass Variables - Bomber Properties")]
     [SerializeField] float _bomberFlightSpeed = 10f;
 
     Vector3 _startPoint, _endpoint;
     Vector3 _moveDirection;
     bool _isHorizontal;
+
     protected override void UseWeapon()
     {
         base.UseWeapon();
@@ -27,7 +34,7 @@ public class LineBomber : Weapon
                 GameObject bomber = PooledObjectManager.Instance.GetPooledObject(_bomberID);
                 bomber.transform.position = new Vector3(_startPoint.x, _ySpawnOffset, _startPoint.z);
                 bomber.transform.rotation = Quaternion.LookRotation(_moveDirection, Vector3.up);
-                bomber.GetComponent<StealthBomber>().InitializeTargets(_targetMode.TargetTiles, _isHorizontal, _projectileID);
+                bomber.GetComponent<StealthBomber>().InitializeTargets(_targetMode.TargetTiles, _isHorizontal, _projectileID, _spawnSide);
                 bomber.SetActive(true);
                 bomber.GetComponent<StealthBomber>().SetVelocity((_endpoint - _startPoint).normalized * _bomberFlightSpeed);
 
@@ -56,9 +63,43 @@ public class LineBomber : Weapon
 
         _startPoint = StartPointWithOffset(differenceToOrigin);
         _endpoint = _startPoint + (_moveDirection * (9+_spawnAndEndOffset*2)) ; //[refactor] use grid size data later to remove magic number 9
+
+        ModifySpawnLocation(_spawnSide);
     }
 
+
     #region Calculating Start and End Point Helper Functions
+    private void ModifySpawnLocation(SpawnScreenSide spawnSide)
+    {
+
+        switch (spawnSide)
+        {
+            case SpawnScreenSide.Top:
+                if (_isHorizontal)
+                {
+                    SwapStartAndEndPoint();
+                }
+                break;
+            case SpawnScreenSide.Bottom:
+                if (!_isHorizontal)
+                {
+                    SwapStartAndEndPoint();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void SwapStartAndEndPoint()
+    {
+        Vector3 temp = _endpoint;
+        _endpoint = _startPoint;
+        _startPoint = temp;
+
+        _moveDirection = -_moveDirection;
+    }
+
     private Vector3 StartPointWithOffset(Vector3 differenceToOrigin)
     {
         Vector3 startPoint;

@@ -886,6 +886,7 @@ MonoBehaviour:
   _damagePerHit: 1
   _audioSource: {fileID: 2206694937297292930}
   _sfx_Hit: {fileID: 11400000, guid: 598f25e2deeff0248ab6961d96a69a18, type: 2}
+  _sfx_MetalCreak: {fileID: 11400000, guid: a8d8d70d27948834cadc7e2c7691983a, type: 2}
   _explosionRadiusGO: {fileID: 4262949725605469185}
 --- !u!114 &5970365075445944325
 MonoBehaviour:
@@ -1216,6 +1217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyUnit: {fileID: 3473117238107531798}
   _healthBarAnchor: {fileID: 6629875034872835500}
+  _parentAudioSource: {fileID: 2206694937297292930}
 --- !u!1 &6629875034872835500
 GameObject:
   m_ObjectHideFlags: 0

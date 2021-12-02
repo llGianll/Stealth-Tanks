@@ -5,6 +5,10 @@ public class MouseTarget : MonoBehaviour
 {
     //[SerializeField] GameObject _targetModeGO;
     [SerializeField] LayerMask _gridTileLM;
+    [Header("Audio")]
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioEventSO _sfx_ChangeSelection;
+
     ITargeting _targetMode;
 
     RaycastHit _hit, _previousHit;
@@ -57,6 +61,7 @@ public class MouseTarget : MonoBehaviour
 
             if (HasTargetChanged())
             {
+                _sfx_ChangeSelection.Play(_audioSource);
                 OnChangeTarget();
             }
         }

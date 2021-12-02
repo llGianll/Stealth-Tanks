@@ -20,10 +20,11 @@ public class UIEndScreen : MonoBehaviour
     [Header("Horizontal Fill")]
     [SerializeField] float _fillSpeed = 5f;
     [SerializeField] Image _horizontalBarFill;
+    [Header("Audio")]
+    [SerializeField] AudioSource _audioSource;
 
     private void Start()
     {
-        //_turnCounterSO.TurnCount = 11;
         UpdateWinUI();
         StartCoroutine(UIProgression());
         _horizontalBarFill.fillAmount = 0f;
@@ -31,18 +32,19 @@ public class UIEndScreen : MonoBehaviour
 
     private IEnumerator UIProgression()
     {
-        float turnCountValue = _ratingSystemSO.RatingTurnCounts[0] + 1f; //to be decreased based on percentage, 1f acts as offset for both the loop and the bar fill
-        float maxRatingValue = _ratingSystemSO.RatingTurnCounts[_ratingSystemSO.RatingTurnCounts.Count - 1];
-        float minRatingValue = _ratingSystemSO.RatingTurnCounts[0];
+        float turnCountValue = _ratingSystemSO.Rating[0].TurnCount + 1f; //to be decreased based on percentage, 1f acts as offset for both the loop and the bar fill
+        float maxRatingValue = _ratingSystemSO.Rating[_ratingSystemSO.Rating.Count - 1].TurnCount;
+        float minRatingValue = _ratingSystemSO.Rating[0].TurnCount;
         float ratingDifference = minRatingValue - maxRatingValue;
 
         int starValueIndex = 0;
         while(turnCountValue > _turnCounterSO.TurnCount)
         {
             turnCountValue -= Time.deltaTime * _fillSpeed;
-            if (turnCountValue < _ratingSystemSO.RatingTurnCounts[starValueIndex])
+            if (turnCountValue < _ratingSystemSO.Rating[starValueIndex].TurnCount)
             {
-                _starHolders[starValueIndex].PlayPopOutAnimation();
+                _starHolders[starValueIndex].PlayPopOutAnimation(_ratingSystemSO.Rating[starValueIndex].RatingSFX);
+                
                 starValueIndex++;
             }
         
@@ -63,9 +65,9 @@ public class UIEndScreen : MonoBehaviour
         _animator.SetTrigger("Pop");
 
         //update horizontal bar turn requirement info 
-        for (int i = 0; i < _ratingSystemSO.RatingTurnCounts.Count; i++)
+        for (int i = 0; i < _ratingSystemSO.Rating.Count; i++)
         {
-            _turnTexts[i].text = _ratingSystemSO.RatingTurnCounts[i].ToString("00");
+            _turnTexts[i].text = _ratingSystemSO.Rating[i].TurnCount.ToString("00");
         }
 
     }

@@ -854,7 +854,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 10
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &5339590626159921828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1558,6 +1558,10 @@ PrefabInstance:
     - target: {fileID: 1494238195799006799, guid: 8acbacc72fe5fdc418bda99d5a731d19, type: 3}
       propertyPath: m_Center.y
       value: 0.2913354
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795330334461170157, guid: 8acbacc72fe5fdc418bda99d5a731d19, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4718363362971820096, guid: 8acbacc72fe5fdc418bda99d5a731d19, type: 3}
       propertyPath: m_Name

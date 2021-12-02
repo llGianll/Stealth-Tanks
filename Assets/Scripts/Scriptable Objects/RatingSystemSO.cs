@@ -4,7 +4,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Level/Rating System")]
 public class RatingSystemSO : ScriptableObject
 {
-    [SerializeField] List<int> _ratingTurnCounts = new List<int>();
+    [SerializeField] List<Rating> _ratingTurnCounts = new List<Rating>();
 
-    public List<int> RatingTurnCounts => _ratingTurnCounts;
+    public List<Rating> Rating => _ratingTurnCounts;
+}
+
+[System.Serializable]
+public class Rating
+{
+    [SerializeField] int _turnCount;
+    [SerializeField] AudioEventSO _ratingSfx;
+
+    public int TurnCount => _turnCount;
+    public AudioEventSO RatingSFX => _ratingSfx;
 }

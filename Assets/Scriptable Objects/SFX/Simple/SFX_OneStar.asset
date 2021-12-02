@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6533019c582a374db68df89122b9534, type: 3}
   m_Name: SFX_OneStar
   m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 425e0c2aad98f4d4db8452212ec8ba6a, type: 3}
-  _volume: 1
-  _pitch: 1.5
+  _audioClip: {fileID: 8300000, guid: b3f210289cf8f4473a7e2fcf62618a29, type: 3}
+  _volume: 0.6
+  _pitch: 2

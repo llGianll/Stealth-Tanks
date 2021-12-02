@@ -149,7 +149,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 10
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &6384956040282085791
 MonoBehaviour:
   m_ObjectHideFlags: 0

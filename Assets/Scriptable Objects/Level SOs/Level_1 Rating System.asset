@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1648309b24e6b41429073d182d4eb020, type: 3}
   m_Name: Level_1 Rating System
   m_EditorClassIdentifier: 
-  _ratingTurnCounts: 0f0000000c00000009000000
+  _ratingTurnCounts:
+  - _turnCount: 15
+    _ratingSfx: {fileID: 11400000, guid: dc6c195be9f001b4abc20e1dbd8ed081, type: 2}
+  - _turnCount: 12
+    _ratingSfx: {fileID: 11400000, guid: b13c01ecb923a20438cb3511a5087719, type: 2}
+  - _turnCount: 9
+    _ratingSfx: {fileID: 11400000, guid: 42d7210fedc06b74e89a0bc6bee279ff, type: 2}

@@ -5,21 +5,15 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    [Header("Audio variables")]
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioEventSO _sfx_WeaponSwitch;
+    
     List<Weapon> _weapons = new List<Weapon>();
     int _activeWeaponIndex;
     bool _allowWeaponSwitch;
 
     public Action<Sprite, int> OnSwitchWeapon = delegate { };
-
-    //public static WeaponManager Instance;
-
-    private void Awake()
-    {
-        //if (Instance == null)
-        //    Instance = this;
-        //else
-        //    Destroy(gameObject);
-    }
 
     private void Start()
     {
@@ -87,6 +81,7 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
+        _sfx_WeaponSwitch.Play(_audioSource);
         OnSwitchWeapon(weapon.Icon, weapon.EnergyCost);
     }
 

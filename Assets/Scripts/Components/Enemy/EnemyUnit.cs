@@ -13,6 +13,9 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth, IDeath
     [Header("Health")]
     [SerializeField] protected float _maxHealth = 5f;
     [SerializeField] protected float _damagePerHit = 1f;
+    [Header("Audio")]
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioEventSO _sfx_Hit;
 
     public string ID { get; set; }
 
@@ -113,6 +116,7 @@ public abstract class EnemyUnit : MonoBehaviour, IHealth, IDeath
         if (!_isRevealed)
             return;
 
+        _sfx_Hit.Play(_audioSource);
         CurrentHealth -= _damagePerHit;
         OnHealthUpdate(CurrentHealth, _maxHealth);
 

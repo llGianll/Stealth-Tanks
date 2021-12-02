@@ -4814,6 +4814,7 @@ GameObject:
   - component: {fileID: 5484180889746904485}
   - component: {fileID: 7825137411596204924}
   - component: {fileID: 2144318261756795928}
+  - component: {fileID: 7453561095743364121}
   m_Layer: 13
   m_Name: Single Target Missile
   m_TagString: Untagged
@@ -4979,7 +4980,20 @@ MonoBehaviour:
   _projectileSpeed: 12
   _explosionID: Small_Explosion
   _audioSource: {fileID: 7825137411596204924}
-  _projectileHitSFX: {fileID: 11400000, guid: e20dedcc33257d24892154fbcc8aaed7, type: 2}
+--- !u!114 &7453561095743364121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332802918ce901c4bae244eb3f0d40f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 7825137411596204924}
+  _sfx: {fileID: 11400000, guid: 9c29e0d2132099d43971815f9e2e6424, type: 2}
 --- !u!1 &155060
 GameObject:
   m_ObjectHideFlags: 0

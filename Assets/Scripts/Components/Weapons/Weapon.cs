@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected int _energyCost = 2;
     [SerializeField] Sprite _weaponIcon;
@@ -14,10 +14,7 @@ public class Weapon : MonoBehaviour
     public int EnergyCost => _energyCost;
     public Sprite Icon => _weaponIcon;
 
-    private void Awake()
-    {
-        _targetMode = GetComponentInChildren<ITargeting>();
-    }
+    private void Awake() => _targetMode = GetComponentInChildren<ITargeting>();
 
     private void OnEnable()
     {

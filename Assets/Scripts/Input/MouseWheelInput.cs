@@ -13,7 +13,6 @@ public class MouseWheelInput : MonoBehaviour, IWeaponCycleInputReader
 
     private void Awake()
     {
-        OnInputPressed = delegate { };
         _weaponManager =  GetComponent<WeaponManager>();
         _weaponsCount = transform.childCount;
     }

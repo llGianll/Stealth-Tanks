@@ -10,7 +10,7 @@ public class KeyboardInput : MonoBehaviour, IWeaponCycleInputReader
 
     private void Awake()
     {
-        OnInputPressed = delegate { };
+        
     }
 
     private void Update()

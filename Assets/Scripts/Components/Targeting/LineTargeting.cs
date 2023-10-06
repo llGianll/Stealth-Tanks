@@ -3,50 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineTargeting : Targeting, ITargeting
+public class LineTargeting : Targeting
 {
     enum TargetingOrientation {Horizontal, Vertical};
     TargetingOrientation _targetingOrientation;
 
-    List<GridTileProcessor> _targets = new List<GridTileProcessor>();
-
-    public GridTileProcessor TargetTile { get; } //not needed here 
-
-    public List<GridTileProcessor> TargetTiles => _targets;
-
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _targetingOrientation = TargetingOrientation.Horizontal;
-        MouseTarget.Instance.OnChangeTarget += Targeting; 
-        //MouseTarget.Instance.OnClicked += ClickTarget;
-    }
-
-    public void ClickTarget()
-    {
-        foreach (var target in _targets)
-        {
-            target.Clicked();
-        }
-    }
-
-    private void OnEnable()
-    {
-        if(MouseTarget.Instance != null)
-        {
-            MouseTarget.Instance.OnChangeTarget += Targeting;
-            //MouseTarget.Instance.OnClicked += ClickTarget;
-            Targeting();
-        }
-
-    }
-
-    private void OnDisable()
-    {
-        if (MouseTarget.Instance != null)
-        {
-            RefreshTargeting();
-            MouseTarget.Instance.OnChangeTarget -= Targeting;
-        }
     }
 
     private void Update()
@@ -63,10 +28,10 @@ public class LineTargeting : Targeting, ITargeting
                                                 TargetingOrientation.Vertical :
                                                 TargetingOrientation.Horizontal;
 
-        Targeting();
+        AcquireTarget();
     }
 
-    private void Targeting()
+    protected override void AcquireTarget()
     {
         RefreshTargeting();
 
@@ -88,19 +53,21 @@ public class LineTargeting : Targeting, ITargeting
         }
     }
 
-    public void AddTarget(GridTileProcessor target)
+    protected override void RefreshTargeting()
     {
-        _targets.Add(target);
-    }
-    public void RefreshTargeting()
-    {
-        foreach (var target in _targets)
+        if (Target == null)
+            return;
+
+        foreach (var target in Target)
         {
             target.IsTargeted = false;
         }
 
-        _targets.Clear();
+        Target.Clear();
     }
-
+    public override void AddTarget(GridTileProcessor target)
+    {
+        Target.Add(target);
+    }
 }
 

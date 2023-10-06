@@ -26,8 +26,6 @@ public class LineBomber : Weapon
 
     protected override void UseWeapon()
     {
-        base.UseWeapon();
-
         GetStartAndEndPoint();
 
         if (MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>() != null)
@@ -37,7 +35,8 @@ public class LineBomber : Weapon
                 GameObject bomber = PooledObjectManager.Instance.GetPooledObject(_bomberID);
                 bomber.transform.position = new Vector3(_startPoint.x, _ySpawnOffset, _startPoint.z);
                 bomber.transform.rotation = Quaternion.LookRotation(_moveDirection, Vector3.up);
-                bomber.GetComponent<StealthBomber>().InitializeTargets(_targetMode.TargetTiles, _isHorizontal, _projectileID, _spawnSide);
+                //bomber.GetComponent<StealthBomber>().InitializeTargets(_targetMode.TargetTiles, _isHorizontal, _projectileID, _spawnSide);
+                bomber.GetComponent<StealthBomber>().InitializeTargets(_targetMode.Target, _isHorizontal, _projectileID, _spawnSide);
                 bomber.SetActive(true);
                 bomber.GetComponent<StealthBomber>().SetVelocity((_endpoint - _startPoint).normalized * _bomberFlightSpeed);
 
@@ -51,11 +50,14 @@ public class LineBomber : Weapon
 
     private void GetStartAndEndPoint()
     {
-        if (_targetMode.TargetTiles.Count <= 0)
+        //if (_targetMode.TargetTiles.Count <= 0)
+        if (_targetMode.Target.Count <= 0)
             return;
 
-        Vector3 firstTile = _targetMode.TargetTiles[0].transform.position;
-        Vector3 nextTile = _targetMode.TargetTiles[1].transform.position;
+        //Vector3 firstTile = _targetMode.TargetTiles[0].transform.position;
+        //Vector3 nextTile = _targetMode.TargetTiles[1].transform.position;
+        Vector3 firstTile = _targetMode.Target[0].transform.position;
+        Vector3 nextTile = _targetMode.Target[1].transform.position;
 
         CheckIfHorizontal(firstTile, nextTile);
 

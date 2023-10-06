@@ -1,49 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SingleTileTargeting : Targeting, ITargeting
+public class SingleTileTargeting : Targeting
 {
-    GridTileProcessor _targetTile;
+    protected override void Start() => base.Start();
 
-    public GridTileProcessor TargetTile => _targetTile;
-    public List<GridTileProcessor> TargetTiles { get; } //not needed here 
-
-    private void OnEnable()
-    {
-        if (MouseTarget.Instance != null)
-        {
-            MouseTarget.Instance.OnChangeTarget += Targeting;
-            //MouseTarget.Instance.OnClicked += ClickTarget;
-            Targeting();
-        }
-
-    }
-
-    private void OnDisable()
-    {
-        if(MouseTarget.Instance != null)
-        {
-            RefreshTargeting();
-            MouseTarget.Instance.OnChangeTarget -= Targeting;
-            //MouseTarget.Instance.OnClicked -= ClickTarget;
-        }
-    }
-
-    private void Start()
-    {
-        MouseTarget.Instance.OnChangeTarget += Targeting;
-        //MouseTarget.Instance.OnClicked += ClickTarget;
-    }
-
-    public void ClickTarget()
-    {
-        if (_targetTile != null)
-            _targetTile.Clicked();
-    }
-
-    private void Targeting()
+    protected override void AcquireTarget()
     {
         if(MouseTarget.Instance.HitCollider != null) 
         {
@@ -51,23 +10,23 @@ public class SingleTileTargeting : Targeting, ITargeting
         }
     }
 
-    public void AddTarget(GridTileProcessor target)
+    protected override void RefreshTargeting()
+    {
+        if (Target.Count <= 0)
+            return;
+
+        Target[0].IsTargeted = false;
+        Target.Clear();
+    }
+
+    public override void AddTarget(GridTileProcessor target)
     {
         RefreshTargeting();
 
         if (target == null)
             return;
 
-        _targetTile = target;
-        _targetTile.IsTargeted = true;
-    }
-
-    public void RefreshTargeting()
-    {
-        if (_targetTile == null)
-            return;
-
-        _targetTile.IsTargeted = false;
-        _targetTile = null;
+        Target.Add(target);
+        Target[0].IsTargeted = true;
     }
 }

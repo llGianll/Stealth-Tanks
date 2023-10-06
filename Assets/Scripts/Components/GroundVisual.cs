@@ -12,7 +12,7 @@ public class GroundVisual : MonoBehaviour
     GridTileProcessor _gridTileProcessor;
     GroundIntegrity _groundIntegrity;
     MeshRenderer _meshRenderer;
-
+    
     private void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();

@@ -80,7 +80,7 @@ public class WeaponManager : MonoBehaviour
         {
             if (child.GetComponent<Weapon>() == weapon)
             {
-                MouseTarget.Instance.TargetMode = weapon.gameObject.transform.GetComponentInChildren<ITargeting>();
+                MouseTarget.Instance.TargetMode = weapon.gameObject.transform.GetComponentInChildren<Targeting>();
                 child.gameObject.SetActive(true);
             }
         }

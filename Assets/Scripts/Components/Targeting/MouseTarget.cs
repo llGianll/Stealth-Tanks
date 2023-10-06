@@ -3,18 +3,17 @@ using UnityEngine;
 
 public class MouseTarget : MonoBehaviour
 {
-    //[SerializeField] GameObject _targetModeGO;
     [SerializeField] LayerMask _gridTileLM;
     [Header("Audio")]
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioEventSO _sfx_ChangeSelection;
 
-    ITargeting _targetMode;
+    Targeting _targetMode;
 
     RaycastHit _hit, _previousHit;
     Collider _hitCollider;
 
-    public ITargeting TargetMode
+    public Targeting TargetMode
     {
         get { return _targetMode; }
         set { _targetMode = value; }
@@ -36,12 +35,6 @@ public class MouseTarget : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private void Start()
-    {
-        //_targetMode = _targetModeGO.GetComponent<ITargeting>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
         TargetWithRaycast();
@@ -76,6 +69,5 @@ public class MouseTarget : MonoBehaviour
             _previousHit = _hit;
 
         return changed;
-            
     }
 }

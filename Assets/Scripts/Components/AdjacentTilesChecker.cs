@@ -71,12 +71,12 @@ public class AdjacentTilesChecker : MonoBehaviour
         CheckDown(this);
     }
 
+    //[Revisit Notes] Check direction functions recursively search adjacent tiles through raycasts. Seems to be only useful for Line Targeting so why is the logic even here? 
     public AdjacentTilesChecker CheckLeft(AdjacentTilesChecker adjacentChecker)
     {
         //[Refactor] duplication of logic 
         if (adjacentChecker.Left == null)
         {
-
             return null;
         }
 
@@ -91,7 +91,6 @@ public class AdjacentTilesChecker : MonoBehaviour
     {
         if (adjacentChecker.Right == null)
         {
-
             return null;
         }
 
@@ -125,21 +124,4 @@ public class AdjacentTilesChecker : MonoBehaviour
 
         return CheckDown(adjacentChecker.Down.AdjacentChecker);
     }
-
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.blue;
-
-    //    if (_left != null)
-    //        Gizmos.DrawWireCube(transform.position + -Vector3.forward + new Vector3(0, 0.25f, 0), Vector3.one);
-
-    //    if (_right != null)
-    //        Gizmos.DrawWireCube(transform.position + Vector3.forward + new Vector3(0, 0.25f, 0), Vector3.one);
-
-    //    if (_up != null)
-    //        Gizmos.DrawWireCube(transform.position + -Vector3.right + new Vector3(0, 0.25f, 0), Vector3.one);
-
-    //    if (_down != null)
-    //        Gizmos.DrawWireCube(transform.position + Vector3.right + new Vector3(0, 0.25f, 0), Vector3.one);
-    //}
 }

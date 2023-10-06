@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,6 +35,10 @@ public class GridGenerator : MonoBehaviour
         Vector3 groundScale = _gridTile.transform.localScale;
         Vector3 firstCellPos = transform.position;
 
+        /*
+         * [Revisit Notes] 
+         * Standard grid generation when using 1D collection. Doesn't use object pooling which is bad performance-wise. 
+         */
         for (int i = 0; i < _gridSize.XCount; i++)
         {
             for (int j = 0; j < _gridSize.ZCount; j++)
@@ -43,14 +46,16 @@ public class GridGenerator : MonoBehaviour
                 Vector3 cellPosition = new Vector3(firstCellPos.x + i, firstCellPos.y, firstCellPos.z + j);
                 GameObject gridTile = Instantiate(_gridTile, cellPosition, Quaternion.identity);
                 gridTile.transform.parent = this.transform;
-                gridTile.GetComponent<GridTileProcessor>().CellIndex = _gridTileProcessors.Count;
                 _gridTileProcessors.Add(gridTile.GetComponent<GridTileProcessor>());
             }
         }
 
+        //[Revisit Notes] Signals EnemyUnitSpawner to start spawning enemies and for Grid tiles to start checking and referencing adjacent tiles. 
         OnFinishedGridGeneration(_gridTileProcessors);
     }
 
+    //[Revisit Notes] Unused since I chose to just spawn starting from the position of the gameobject itself. The initial purpose seemed to be to have the grid centralized to the gameobject position. 
+    //Seems to work just as intended. 
     private Vector3 CalculateFirstCellPos()
     {
         //calculates the first position of the first cell based on the dimensions of the grid and centralize the grid to this position's center 
@@ -65,11 +70,4 @@ public class GridGenerator : MonoBehaviour
                            zPos);
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        //Vector3 gridDimension = new Vector3(_xCount * _groundPrefab.localScale.x, 
-        //                                    _groundPrefab.localScale.y , 
-        //                                    _zCount * _groundPrefab.localScale.z);
-        //Gizmos.DrawWireCube(transform.position, gridDimension);
-    }
 }

@@ -1,5 +1,5 @@
 /*
- * component that listens to mouse input, raycast detection. Other tile elements like enemy, ground subscribes to events of this class and executes their functions 
+ * Central script for keeping track of the state of a particular tile, and triggering OnClick() event
  */
 using System;
 using UnityEngine;

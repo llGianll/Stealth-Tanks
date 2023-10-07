@@ -9,8 +9,6 @@ public class Projectile : MonoBehaviour
     [SerializeField] string _explosionID;
     [Header("Audio")]
     [SerializeField] AudioSource _audioSource;
-    //[SerializeField] AudioEventSO _projectileHitSFX;
-
 
     Rigidbody _rb;
     GridTileProcessor _target;

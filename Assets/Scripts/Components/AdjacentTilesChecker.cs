@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 // transform.forward - right Side, transform.right - down side
+/*
+ * [Revisit Notes] This overcomplication seemed to stem from the unimplemented feature of terrain destruction where ground that is not connected to the largest landmass falls down
+ * The idea is to have each ground tile determine if it's connected to its adjacent tiles through sending raycast on all 4 grid directions, but maybe centralizing all this 
+ * logic to the GridGenerator class is the better idea + updating board/grid state. 
+ */
 public class AdjacentTilesChecker : MonoBehaviour
 {
     GridTileProcessor _up;
@@ -9,7 +14,6 @@ public class AdjacentTilesChecker : MonoBehaviour
     GridTileProcessor _left;
     GridTileProcessor _right;
     GridTileProcessor _currentTile;
-
 
     public GridTileProcessor Up => _up;
     public GridTileProcessor Down => _down;

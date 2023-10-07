@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+/*
+    [Revisit Notes]
+    With the movement of this gameobject being initialized by LineBomber, it's already set to move to the proper path. 
+    So the only purpose of this script is to send a raycast downwards, with its origin point where the Bomber ejects the bomb, then release a bomb everytime the raycast detects a 
+    target tile the first time. 
+ */
+
 public class StealthBomber : MonoBehaviour
 {
     [SerializeField] LayerMask _gridTileLM;

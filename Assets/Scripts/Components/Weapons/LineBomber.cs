@@ -1,14 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum SpawnScreenSide { Top, Bottom }
 
+/*
+    [Revisit Notes] LineBomber class' purpose is to determine the start and end point of the line, then spawn the StealthBomber, then initialize the velocity and unsorted targets
+    It also spawns a 'Despawner' collider at the end of the Stealth Bomber's path to send the object back to the ObjectPooler
+ */
+
 public class LineBomber : Weapon
 {
-    [Header("Scriptable Object References")]
-    [SerializeField] EnergyManager _energyManager;
     [SerializeField] GridSizeSO _gridSizeSO;
 
     [Header("Subclass Variables - Bomber Spawn")]
@@ -28,34 +28,28 @@ public class LineBomber : Weapon
     {
         GetStartAndEndPoint();
 
-        if (MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>() != null)
+        if (CanFire())
         {
-            if (_energyManager.DecreaseEnergy(_energyCost))
-            {
-                GameObject bomber = PooledObjectManager.Instance.GetPooledObject(_bomberID);
-                bomber.transform.position = new Vector3(_startPoint.x, _ySpawnOffset, _startPoint.z);
-                bomber.transform.rotation = Quaternion.LookRotation(_moveDirection, Vector3.up);
-                //bomber.GetComponent<StealthBomber>().InitializeTargets(_targetMode.TargetTiles, _isHorizontal, _projectileID, _spawnSide);
-                bomber.GetComponent<StealthBomber>().InitializeTargets(_targetMode.Target, _isHorizontal, _projectileID, _spawnSide);
-                bomber.SetActive(true);
-                bomber.GetComponent<StealthBomber>().SetVelocity((_endpoint - _startPoint).normalized * _bomberFlightSpeed);
+            GameObject bomber = PooledObjectManager.Instance.GetPooledObject(_bomberID);
+            bomber.transform.position = new Vector3(_startPoint.x, _ySpawnOffset, _startPoint.z);
+            bomber.transform.rotation = Quaternion.LookRotation(_moveDirection, Vector3.up);
+            bomber.GetComponent<StealthBomber>().InitializeTargets(_targetMode.Target, _isHorizontal, _projectileID, _spawnSide);
+            bomber.SetActive(true);
+            bomber.GetComponent<StealthBomber>().SetVelocity((_endpoint - _startPoint).normalized * _bomberFlightSpeed);
 
 
-                GameObject despawner = PooledObjectManager.Instance.GetPooledObject("Despawner");
-                despawner.transform.position = new Vector3(_endpoint.x, _ySpawnOffset, _endpoint.z);
-                despawner.SetActive(true);
-            }
+            GameObject despawner = PooledObjectManager.Instance.GetPooledObject("Despawner");
+            despawner.transform.position = new Vector3(_endpoint.x, _ySpawnOffset, _endpoint.z);
+            despawner.SetActive(true);
         }
     }
 
     private void GetStartAndEndPoint()
     {
-        //if (_targetMode.TargetTiles.Count <= 0)
+        //[Revisit Notes] Since these variables are just used to determine the vector of the bombing, _targetMode.Target's element order doesn't matter
         if (_targetMode.Target.Count <= 0)
             return;
 
-        //Vector3 firstTile = _targetMode.TargetTiles[0].transform.position;
-        //Vector3 nextTile = _targetMode.TargetTiles[1].transform.position;
         Vector3 firstTile = _targetMode.Target[0].transform.position;
         Vector3 nextTile = _targetMode.Target[1].transform.position;
 
@@ -67,7 +61,7 @@ public class LineBomber : Weapon
         _moveDirection = FlipDirection(_moveDirection);
 
         _startPoint = StartPointWithOffset(differenceToOrigin);
-        _endpoint = _startPoint + (_moveDirection * (GridSizeLine() +_spawnAndEndOffset*2));
+        _endpoint = _startPoint + (_moveDirection * (GridSizeLine() +_spawnAndEndOffset*2)); 
 
         ModifySpawnLocation(_spawnSide);
     }
@@ -127,6 +121,7 @@ public class LineBomber : Weapon
 
     private Vector3 FlipDirection(Vector3 tileDirection)
     {
+        //[Revisit Notes] flip the normal's direction to how I want the bomber to move depending if going horizontal or vertical 
         if (_isHorizontal)
         {
             if (Vector3.Dot(Vector3.forward, tileDirection) < 0)
@@ -145,7 +140,9 @@ public class LineBomber : Weapon
 
     private Vector3 OriginDifference(Vector3 firstTile)
     {
-        if (_isHorizontal)
+        //[Revisit Notes] Find the starting point of the line relative to the clicked tile, if horizontal: get the first tile of the row where the clicked tile is 
+        //if vertical: get the first tile of the column, GridGenerator pivot at Vector.zero
+        if (_isHorizontal) 
             return new Vector3(firstTile.x, 0, 0);
         else
             return new Vector3(0, 0, firstTile.z);
@@ -154,7 +151,6 @@ public class LineBomber : Weapon
     private void CheckIfHorizontal(Vector3 firstTile, Vector3 nextTile)
     {
         if (firstTile.z != nextTile.z) //if the z of the two tiles not equal, the orientation is horizontal
-            //Debug.Log("Horizontal");
             _isHorizontal = true;
         else
             _isHorizontal = false;

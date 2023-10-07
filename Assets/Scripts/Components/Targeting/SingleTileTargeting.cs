@@ -1,15 +1,6 @@
 public class SingleTileTargeting : Targeting
 {
     protected override void Start() => base.Start();
-
-    protected override void AcquireTarget()
-    {
-        if(MouseTarget.Instance.HitCollider != null) 
-        {
-            AddTarget(MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>());
-        }
-    }
-
     protected override void RefreshTargeting()
     {
         if (Target.Count <= 0)
@@ -19,10 +10,9 @@ public class SingleTileTargeting : Targeting
         Target.Clear();
     }
 
-    public override void AddTarget(GridTileProcessor target)
+    public override void AddTarget()
     {
-        RefreshTargeting();
-
+        GridTileProcessor target = MouseTarget.Instance.HitCollider.GetComponent<GridTileProcessor>();
         if (target == null)
             return;
 

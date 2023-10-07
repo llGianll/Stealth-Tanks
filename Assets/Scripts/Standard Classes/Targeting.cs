@@ -26,8 +26,16 @@ public abstract class Targeting : MonoBehaviour
     }
     protected virtual void Start() => MouseTarget.Instance.OnChangeTarget += AcquireTarget;
 
-    protected abstract void AcquireTarget();
+    protected virtual void AcquireTarget()
+    {
+        if (MouseTarget.Instance.HitCollider != null)
+        {
+            RefreshTargeting();
+            AddTarget();
+        }
+    }
+
     protected abstract void RefreshTargeting();
-    public abstract void AddTarget(GridTileProcessor target);
+    public abstract void AddTarget();
     
 }

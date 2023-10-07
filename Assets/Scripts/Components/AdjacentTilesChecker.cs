@@ -6,41 +6,28 @@ using UnityEngine;
  * [Revisit Notes] This overcomplication seemed to stem from the unimplemented feature of terrain destruction where ground that is not connected to the largest landmass falls down
  * The idea is to have each ground tile determine if it's connected to its adjacent tiles through sending raycast on all 4 grid directions, but maybe centralizing all this 
  * logic to the GridGenerator class is the better idea + updating board/grid state. 
+ * 
+ * Refactored to only be responsible in detecting and keeping adjacent tile references.
  */
 public class AdjacentTilesChecker : MonoBehaviour
 {
-    GridTileProcessor _up;
-    GridTileProcessor _down;
-    GridTileProcessor _left;
-    GridTileProcessor _right;
-    GridTileProcessor _currentTile;
+    GridTileProcessor _up, _down, _left, _right, _currentTile;
 
     public GridTileProcessor Up => _up;
     public GridTileProcessor Down => _down;
     public GridTileProcessor Left => _left;
     public GridTileProcessor Right => _right;
+    public GridTileProcessor CurrentTile => _currentTile;
 
     [SerializeField] float _rayLength = 0.6f;
 
     private RaycastHit _hit;
 
-    private void Awake()
-    {
-        _currentTile = GetComponent<GridTileProcessor>();
-    }
+    private void Awake() => _currentTile = GetComponent<GridTileProcessor>();
+    private void OnEnable() => GridGenerator.Instance.OnFinishedGridGeneration += CacheAdjacentRefs;
+    private void OnDisable() => GridGenerator.Instance.OnFinishedGridGeneration -= CacheAdjacentRefs;
 
-    private void OnEnable()
-    {
-        GridGenerator.Instance.OnFinishedGridGeneration += SetAdjacentReferences;
-    }
-
-    private void OnDisable()
-    {
-        GridGenerator.Instance.OnFinishedGridGeneration -= SetAdjacentReferences;
-    }
-
-
-    private void SetAdjacentReferences(List<GridTileProcessor> _gridTiles)
+    private void CacheAdjacentRefs(List<GridTileProcessor> _gridTiles)
     {
         //up 
         if(Physics.Raycast(transform.position, -transform.right * _rayLength, out _hit))
@@ -59,9 +46,10 @@ public class AdjacentTilesChecker : MonoBehaviour
             _right = _hit.collider.GetComponent<GridTileProcessor>();
     }
 
+    #region Unused Horizontal and Vertical Checkers previously used by LineTargeting.cs 
     public void HorizontalChecker()
     {
-        MouseTarget.Instance.TargetMode.AddTarget(_currentTile);
+        //MouseTarget.Instance.TargetMode.AddTarget(_currentTile);
         _currentTile.IsTargeted = true;
         CheckLeft(this);
         CheckRight(this);
@@ -69,7 +57,7 @@ public class AdjacentTilesChecker : MonoBehaviour
 
     public void VerticalChecker()
     {
-        MouseTarget.Instance.TargetMode.AddTarget(_currentTile);
+        //MouseTarget.Instance.TargetMode.AddTarget(_currentTile);
         _currentTile.IsTargeted = true;
         CheckUp(this);
         CheckDown(this);
@@ -84,7 +72,7 @@ public class AdjacentTilesChecker : MonoBehaviour
             return null;
         }
 
-        MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Left);
+        //MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Left);
 
         adjacentChecker.Left.IsTargeted = true;
 
@@ -98,7 +86,7 @@ public class AdjacentTilesChecker : MonoBehaviour
             return null;
         }
 
-        MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Right);
+        //MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Right);
 
         adjacentChecker.Right.IsTargeted = true;
 
@@ -110,7 +98,7 @@ public class AdjacentTilesChecker : MonoBehaviour
         if (adjacentChecker.Up == null)
             return null;
 
-        MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Up);
+        //MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Up);
 
         adjacentChecker.Up.IsTargeted = true;
 
@@ -122,10 +110,11 @@ public class AdjacentTilesChecker : MonoBehaviour
         if (adjacentChecker.Down == null)
             return null;
 
-        MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Down);
+        //MouseTarget.Instance.TargetMode.AddTarget(adjacentChecker.Down);
 
         adjacentChecker.Down.IsTargeted = true;
 
         return CheckDown(adjacentChecker.Down.AdjacentChecker);
-    }
+    } 
+    #endregion
 }
